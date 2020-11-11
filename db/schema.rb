@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_153255) do
+ActiveRecord::Schema.define(version: 2020_11_11_172431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,17 +83,12 @@ ActiveRecord::Schema.define(version: 2020_11_11_153255) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "description", null: false
+    t.bigint "client_id", null: false
+    t.bigint "designer_id", null: false
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "brief", null: false
-    t.integer "timeframe"
-    t.integer "designer_accept"
-    t.integer "client_accept"
-    t.float "price", null: false
-    t.bigint "designer_id"
-    t.bigint "client_id"
+    t.text "description"
     t.index ["client_id"], name: "index_projects_on_client_id"
     t.index ["designer_id"], name: "index_projects_on_designer_id"
   end
@@ -118,11 +113,8 @@ ActiveRecord::Schema.define(version: 2020_11_11_153255) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "clients", "users"
-  add_foreign_key "confirmations", "projects"
   add_foreign_key "designers", "users"
   add_foreign_key "details", "users"
-  add_foreign_key "finalisations", "projects"
-  add_foreign_key "payments", "projects"
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "designers"
 end
