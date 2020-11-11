@@ -10,16 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_003523) do
+ActiveRecord::Schema.define(version: 2020_11_11_120450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "projects", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
+  create_table "clients", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "designers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_designers_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "brief", null: false
+    t.integer "timeframe"
+    t.integer "designer_accept"
+    t.integer "client_accept"
+    t.float "price", null: false
+    t.bigint "designer_id"
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_projects_on_client_id"
+    t.index ["designer_id"], name: "index_projects_on_designer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,4 +58,8 @@ ActiveRecord::Schema.define(version: 2020_11_11_003523) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "clients", "users"
+  add_foreign_key "designers", "users"
+  add_foreign_key "projects", "clients"
+  add_foreign_key "projects", "designers"
 end
