@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :timeoutable
   has_one :designer
   has_one :client
+  has_one :detail
+  has_one :address
 end
