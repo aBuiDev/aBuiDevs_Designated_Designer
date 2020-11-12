@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   # get '/projects/:id', to: 'projects#show', as: 'projects_show'
 
   resources :projects
+  resources :clients
 end

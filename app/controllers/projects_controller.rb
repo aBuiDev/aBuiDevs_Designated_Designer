@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
     def new
         @project = Project.new
+        @client = Client.new
     end
 
     def create
