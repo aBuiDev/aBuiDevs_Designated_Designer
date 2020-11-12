@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_025512) do
+ActiveRecord::Schema.define(version: 2020_11_12_154317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,16 +36,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_025512) do
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
-  create_table "confirmations", force: :cascade do |t|
-    t.integer "designer_confirmation"
-    t.integer "client_confirmation"
-    t.integer "payment_status"
-    t.bigint "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_confirmations_on_project_id"
-  end
-
   create_table "designers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -65,23 +55,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_025512) do
     t.index ["user_id"], name: "index_details_on_user_id"
   end
 
-  create_table "finalisations", force: :cascade do |t|
-    t.integer "client_status"
-    t.integer "designer_status"
-    t.bigint "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_finalisations_on_project_id"
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.integer "payment_status"
-    t.bigint "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_payments_on_project_id"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.bigint "client_id", null: false
     t.bigint "designer_id"
@@ -91,11 +64,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_025512) do
     t.text "description"
     t.index ["client_id"], name: "index_projects_on_client_id"
     t.index ["designer_id"], name: "index_projects_on_designer_id"
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
