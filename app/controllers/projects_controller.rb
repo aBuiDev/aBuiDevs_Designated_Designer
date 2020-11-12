@@ -9,7 +9,6 @@ class ProjectsController < ApplicationController
 
     def new
         @project = Project.new
-        @client = Client.new
     end
 
     def create
@@ -18,6 +17,8 @@ class ProjectsController < ApplicationController
         if @project.save!
             redirect_to project_path(@project)
         end
+
+        
     end
 
     def show
