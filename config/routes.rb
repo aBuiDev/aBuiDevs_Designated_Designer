@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   root to: 'pages#index', as: 'home'
 
   # Projects Routes
-  get '/projects', to: 'projects#index'
-  get '/projects/new', to: 'projects#new'
-  post '/projects/new', to: 'projects#create'
-  get '/projects/:id', to: 'projects#show', as: 'projects_show'
+  # get '/projects', to: 'projects#index'
+  # get '/projects/new', to: 'projects#new'
+  # post '/projects/new', to: 'projects#create'
+  # get '/projects/:id', to: 'projects#show', as: 'projects_show'
+
+  resources :projects
 end
