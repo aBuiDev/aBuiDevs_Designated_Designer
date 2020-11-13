@@ -19,7 +19,6 @@ class ProjectsController < ApplicationController
             redirect_to project_path(@project)
         end
 
-        
     end
 
     def show
@@ -38,7 +37,7 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:title, :description)
+        params.require(:project).permit(:title, :description, :payment_status)
     end
 
     def client_authorisation

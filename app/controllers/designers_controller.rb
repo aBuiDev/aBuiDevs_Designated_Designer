@@ -13,7 +13,7 @@ class DesignersController < ApplicationController
         @designer = Designer.new(designer_params)
         @designer.user_id = current_user.id
         if @designer.save!
-            redirect_to '/projects', @designer
+            redirect_to '/projects'
         end
     end
 

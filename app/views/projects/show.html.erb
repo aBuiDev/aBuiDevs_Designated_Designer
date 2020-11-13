@@ -1,3 +1,14 @@
-<%= @project.client_id %> <br>
-<%= current_user.client.id %>
-<%= current_user.id %>
+<h1><%= @project[:title] %></h1>
+
+<p>Project Created By: <%= @project.client.user[:username] %> <br></p>
+<p><%= @project.client.user[:username] %> ID: <%= @project.client_id %> </p>
+
+<p>Project Description:</p>
+<p><%= @project[:description] %></p>
+
+<p>Payment Status:</p>
+<p><%= @project[:payment_status] %></p>
+
+<p>Your Client ID: <%= current_user.client.id %></p>
+<p>Your User ID: <%= current_user.id %></p>
+<p>Your Username: <%= current_user[:username] %></p>

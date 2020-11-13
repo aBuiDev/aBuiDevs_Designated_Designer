@@ -3,5 +3,7 @@
     <%= form.text_field :title %>
     <%= form.label :description %>
     <%= form.text_field :description %>
+    <%= form.label "Payment Status:" %>
+    <%= form.select :payment_status, ["Pending", "Complete"]%>
     <%= form.submit "Save" %>
 <% end %>
