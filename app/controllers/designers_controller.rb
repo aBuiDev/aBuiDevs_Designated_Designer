@@ -12,16 +12,13 @@ class DesignersController < ApplicationController
     def create
         @designer = Designer.new(designer_params)
         @designer.user_id = current_user.id
-        if @designer.save!
-            redirect_to projects_path
-        end
+        @designer.save!
     end
 
     def edit
     end
 
     def show
-
     end
 
     def update

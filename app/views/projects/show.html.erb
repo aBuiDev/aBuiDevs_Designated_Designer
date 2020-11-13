@@ -16,10 +16,12 @@
     <p>Your Account ID: <%= current_user.id %></p>
     <p>Your Username: <%= current_user[:username] %></p>
 
-    <% if current_user.designer.id == @project.designer_id %>
+    <% if @project.designer_id.nil? %> 
+        <p> No Designer Associated With Job </p>
+    <% elsif @project.designer_id.nil == current_user.designer.id %>
         <p> Designer Details, ID: <%= @project.designer_id %></p>
     <% else %>
-        <p> No Designer Details </p>
+        
     <% end %>
 
 <% else %>
@@ -28,7 +30,7 @@
 
 <% end %>
 
-<%= link_to "Accept", '/designers', method: 'post' %>
+<%= link_to 'Accept Job', designers_path, method: 'post' %>
 
 
 
