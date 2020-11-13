@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
     
 
     def index
+        @project = Project.new
     end
 
     def new
@@ -26,6 +27,9 @@ class ProjectsController < ApplicationController
     end
 
     def edit
+    end
+
+    def update
     end
 
     def destroy
