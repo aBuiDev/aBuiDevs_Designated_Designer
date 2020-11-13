@@ -1,14 +1,35 @@
-<h1><%= @project[:title] %></h1>
+<% if current_user.client.id == @project.client_id %>
 
-<p>Project Created By: <%= @project.client.user[:username] %> <br></p>
-<p><%= @project.client.user[:username] %> ID: <%= @project.client_id %> </p>
+    <h1><%= @project[:title] %></h1>
+    <p>Project ID: <%= @project.id %></p>
 
-<p>Project Description:</p>
-<p><%= @project[:description] %></p>
+    <p>Project Created By: <%= @project.client.user[:username] %> <br></p>
+    <p><%= @project.client.user[:username] %> ID: <%= @project.client_id %> </p>
 
-<p>Payment Status:</p>
-<p><%= @project[:payment_status] %></p>
+    <p>Project Description:</p>
+    <p><%= @project[:description] %></p>
 
-<p>Your Client ID: <%= current_user.client.id %></p>
-<p>Your User ID: <%= current_user.id %></p>
-<p>Your Username: <%= current_user[:username] %></p>
+    <p>Payment Status:</p>
+    <p><%= @project[:payment_status] %></p>
+
+    <p>Your Client ID: <%= current_user.client.id %></p>
+    <p>Your Account ID: <%= current_user.id %></p>
+    <p>Your Username: <%= current_user[:username] %></p>
+
+    <% if current_user.designer.id == @project.designer_id %>
+        <p> Designer Details, ID: <%= @project.designer_id %></p>
+    <% else %>
+        <p> No Designer Details </p>
+    <% end %>
+
+<% else %>
+
+    <p>Not Your Project to View</p>
+
+<% end %>
+
+<%= link_to "Accept", '/designers', method: 'post' %>
+
+
+
+

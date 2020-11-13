@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   # Projects Routes
   # get '/projects', to: 'projects#index'
   # get '/projects/new', to: 'projects#new'
-  # post '/projects/new', to: 'projects#create'
   # get '/projects/:id', to: 'projects#show', as: 'projects_show'
 
   resources :projects
