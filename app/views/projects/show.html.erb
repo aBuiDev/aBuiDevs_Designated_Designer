@@ -1,3 +1,5 @@
+<%= image_tag @project.picture if @project.picture.attached? %>
+
 <% if current_user.client.id == @project.client_id %>
 
     <h1><%= @project[:title] %></h1>

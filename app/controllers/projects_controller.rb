@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
     end
 
     def update
-        @project.update(designer_id: current_user.id)
+        @project.update(designer_id: current_user.designer.id)
         @project.save!
         redirect_to project_path(@project)
     end
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:title, :description, :payment_status, :designer_id)
+        params.require(:project).permit(:title, :description, :payment_status, :designer_id, :picture)
     end
 
     def set_project
