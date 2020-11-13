@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
     before_action :authenticate_user!, only: [:new]
     before_action :client_authorisation, only: [:create]
-    
+    before_action :set_project
 
     def index
         @project
@@ -21,13 +21,17 @@ class ProjectsController < ApplicationController
     end
 
     def show
-        @project = Project.find(params[:id])
+        @project = Project.find_by(id: params[:id])
     end
 
     def edit
+        @project = Project.find_by(id: params[:id])
     end
 
     def update
+        @project.update(designer_id: current_user.id)
+        @project.save!
+        redirect_to project_path(@project)
     end
 
     def destroy
@@ -36,7 +40,11 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:title, :description, :payment_status)
+        params.require(:project).permit(:title, :description, :payment_status, :designer_id)
+    end
+
+    def set_project
+        @project = Project.find_by(id: params[:id])
     end
 
     def client_authorisation

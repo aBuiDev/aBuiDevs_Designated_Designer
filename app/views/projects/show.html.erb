@@ -18,7 +18,7 @@
 
     <% if @project.designer_id.nil? %> 
         <p> No Designer Associated With Job </p>
-    <% elsif @project.designer_id.nil == current_user.designer.id %>
+    <% elsif @project.designer_id == current_user.designer.id %>
         <p> Designer Details, ID: <%= @project.designer_id %></p>
     <% else %>
         
@@ -30,7 +30,17 @@
 
 <% end %>
 
-<%= link_to 'Accept Job', designers_path, method: 'post' %>
+<% if @project.designer_id.nil? %>
+    <%= link_to 'Accept Job', designers_path, method: 'post' %>
+<% else %>
+    <p> Blank </p>
+<% end %>
+
+<%= form_with model: @project, local: true do | form | %>
+    <%= form.submit "Confirm" %>
+<% end %>
+
+
 
 
 

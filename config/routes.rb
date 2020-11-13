@@ -5,12 +5,17 @@ Rails.application.routes.draw do
   # Pages(main) Routes
   root to: 'pages#index', as: 'home'
 
-  # Projects Routes
+  
   # get '/projects', to: 'projects#index'
   # get '/projects/new', to: 'projects#new'
   # get '/projects/:id', to: 'projects#show', as: 'projects_show'
 
+
+  # Projects Routes
   resources :projects
+  put '/projects/:d', to: 'projects#add_designer'
+
   resources :clients
+
   resources :designers
 end
