@@ -35,7 +35,7 @@
 <% if @project.designer_id.nil? %>
     <%= link_to 'Accept Job', designers_path, method: 'post' %>
 <% else %>
-    <p> Blank </p>
+    <p style="display: none"></p>
 <% end %>
 
 <%= form_with model: @project, local: true do | form | %>
