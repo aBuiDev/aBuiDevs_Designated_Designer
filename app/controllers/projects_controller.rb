@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     before_action :set_project
 
     def index
-        @project
+        @projects = Project.all
     end
 
     def new
@@ -29,8 +29,10 @@ class ProjectsController < ApplicationController
     end
 
     def update
-        @project.update(designer_id: current_user.designer.id)
-        @project.save!
+        if @project.designer_id.nil?
+            @project.update(designer_id: current_user.designer.id)
+            @project.save!
+        end
         redirect_to project_path(@project)
     end
 
@@ -40,7 +42,7 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:title, :description, :payment_status, :designer_id, :picture)
+        params.require(:project).permit(:title, :description, :payment_status, :designer_status, :client_status, :project_status, :designer_id, :picture)
     end
 
     def set_project
@@ -53,6 +55,5 @@ class ProjectsController < ApplicationController
             redirect_to home_path
         end
     end
-
 end
 
