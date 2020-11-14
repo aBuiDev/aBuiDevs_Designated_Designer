@@ -5,8 +5,6 @@
     <%= form.text_field :title %>
     <%= form.label :description %>
     <%= form.text_field :description %>
-    <%= form.label "Payment Status:" %>
-    <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
     <%= form.label :picture %>
     <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
     <%= form.submit "Save" %>
