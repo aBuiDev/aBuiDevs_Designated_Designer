@@ -33,25 +33,25 @@
         <p> No Designer Associated With Job </p>
     <% elsif @project.designer_id == current_user.designer.id %>
         <p> Designer Details, ID: <%= @project.designer_id %></p>
-        <%= form_with url: project_path, method: "put", local: true do | form | %>
+        <%= form_with model: @project, local: true do | form | %>
             <%= form.label "Designer Status:" %>
             <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ] %>
             <%= form.submit "Update" %>
         <% end %>
 
-        <%= form_with url: project_path, method: 'put', local: true do | form | %>
+        <%= form_with model: @project, local: true do | form | %>
             <%= form.label "Client Status:" %>
             <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
             <%= form.submit "Update" %>
         <% end %>
 
-        <%= form_with url: project_path, method: 'put', local: true do | form | %>
+        <%= form_with model: @project, local: true do | form | %>
             <%= form.label "Project Status:" %>
             <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
             <%= form.submit "Update" %>
         <% end %>
 
-        <%= form_with url: project_path, method: 'put', local: true do | form | %>
+        <%= form_with model: @project, local: true do | form | %>
             <%= form.label "Payment Status:" %>
             <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
             <%= form.submit "Update" %>
@@ -74,11 +74,9 @@
     <p style="display: none"></p>
 <% end %>
 
-<%= form_with url: project_path, method: 'put', local: true do | form | %>
+<%= form_with model: @project, local: true do | form | %>
     <%= form.submit "Confirm" %>
 <% end %>
-
-<%= link_to "Confirm", url: project_path %>
 
 
 

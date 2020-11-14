@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
         else
         end
 
-        @project.update(project_params)
+        @project.update(project_status_params.to_h)
         @project.save!
     
         redirect_to project_path(@project)
@@ -49,7 +49,11 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.permit(:title, :description, :payment_status, :designer_status, :client_status, :project_status, :picture, :designer_id, :client_id)
+        params.require(:project).permit(:title, :description, :payment_status, :designer_status, :client_status, :project_status, :picture, :designer_id, :client_id, :authenticity_token) if params[:project]
+    end
+
+    def project_status_params
+        params.require(:project).permit(:payment_status, :designer_status, :client_status, :project_status) if params[:project]
     end
 
     def client_params
