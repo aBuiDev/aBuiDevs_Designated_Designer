@@ -48,6 +48,8 @@ class ProjectsController < ApplicationController
 
         @project.update(designer_id: nil)
         @project.save!
+
+        redirect_to project_path(@project)
     end
 
     def destroy
