@@ -1,3 +1,5 @@
+<%= render "shared/navbar" %>
+
 <%= form_with model: @project, local: true do | form | %>
     <%= form.label :title %>
     <%= form.text_field :title %>

@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   # Projects Routes
   resources :projects
-  put '/projects/:d', to: 'projects#add_designer'
 
   resources :clients
 

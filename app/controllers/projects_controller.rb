@@ -29,10 +29,17 @@ class ProjectsController < ApplicationController
     end
 
     def update
+
+        @project = Project.find_by(id: params[:id])
+
         if @project.designer_id.nil?
             @project.update(designer_id: current_user.designer.id)
             @project.save!
         end
+
+        @project.update(project_params)
+        @project.save!
+    
         redirect_to project_path(@project)
     end
 
