@@ -43,6 +43,13 @@ class ProjectsController < ApplicationController
         redirect_to project_path(@project)
     end
 
+    def remove_designer
+        @project = Project.find params[:id]
+
+        @project.update(designer_id: nil)
+        @project.save!
+    end
+
     def destroy
     end
 
@@ -53,7 +60,11 @@ class ProjectsController < ApplicationController
     end
 
     def project_status_params
-        params.require(:project).permit(:payment_status, :designer_status, :client_status, :project_status) if params[:project]
+        params.require(:project).permit(:payment_status, :designer_status, :client_status, :project_status, :designer_id) if params[:project]
+    end
+
+    def project_remove_designer_params
+        params.require(:project).permit(:designer_id) if params[:project]
     end
 
     def client_params

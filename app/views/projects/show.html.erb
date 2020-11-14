@@ -74,10 +74,17 @@
     <p style="display: none"></p>
 <% end %>
 
+
 <%= form_with model: @project, local: true do | form | %>
     <%= form.submit "Confirm" %>
 <% end %>
 
+
+<% if current_user.client.id == @project.client_id %>
+    <%= link_to 'Remove Designer', remove_designer_path, method: 'put' %>
+<% else %>
+    <p style="display: none"></p>
+<% end %>
 
 
 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # Projects Routes
   resources :projects
+  put '/projects/:id/remove_designer', to: 'projects#remove_designer', as: 'remove_designer'
 
   resources :clients
 
