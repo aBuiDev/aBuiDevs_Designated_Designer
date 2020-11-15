@@ -103,7 +103,9 @@
         <%= form.text_field :message_content %>
         <%= form.submit "Send" %>
     <% end %>
-<% else @project.designer_id.nil? %>
+<% elsif @project.designer_id.nil? %>
+    <p style="display: none"></p>
+<% elsif @project.client_id.nil? %>
     <p style="display: none"></p>
 <% end %>
 

@@ -11,14 +11,17 @@ class DesignersController < ApplicationController
 
     def create
         @designer = Designer.new
+        @client = Client.new
         if current_user.designer.nil?
             @designer = Designer.new(designer_params)
             @designer.user_id = current_user.id
-            if @designer.save!
+            @designer.save!
+        elsif current_user.client.nil?
+            @client = Client.new(client_params)
+            @client.user_id = current_user.id
+            if @client.save!
                 redirect_to projects_path
             end
-        else
-            redirect_to projects_path
         end
     end
 
@@ -37,6 +40,10 @@ class DesignersController < ApplicationController
     private
 
     def designer_params
+        params.permit(:user_id)
+    end
+
+    def client_params
         params.permit(:user_id)
     end
 end
