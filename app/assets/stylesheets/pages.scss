@@ -3,3 +3,10 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 @import 'bootstrap';
+
+.frontCoverSection {
+    width: 100%;
+    height: 1000px;
+    background-image: url("artndesign_cover_4096.jpg");
+    background-position: center;
+}

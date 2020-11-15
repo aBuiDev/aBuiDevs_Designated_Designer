@@ -63,4 +63,12 @@ table {
 	border-spacing: 0;
 }
 
+.notice {
+	display: none;
+}
+
+.alert {
+	display: none;
+}
+
 

@@ -79,7 +79,7 @@
         <h1><%= message[:from] %>: <%= message[:message_content] %> <%= message[:created_at] %></h1>
     <% end %>
     <hr>
-    <h1>Client Controls</h1>
+    <h1>Client Controls:</h1>
     <hr>
     <%= form_with model: @project, local: true do | form | %>
         <%= form.label "Client Status:" %>
