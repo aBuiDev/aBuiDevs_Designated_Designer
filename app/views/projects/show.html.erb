@@ -41,14 +41,51 @@
 <%# Designer HUD %>
 
 <% if @project.designer_id.nil? %>
-    <p style="display: none"></p>
+    <%= form_with model: @project, local: true do | form | %>
+        <%= form.submit "Join Project" %>
+    <% end %>
 <% else %>
+    <p style="display: none"></p>
+<% end %>
+
+
+
+
+
+
+
+<% if @project.designer_id == current_user.designer.id %>
+    <h1>Project Status Interface:</h1>
+    <hr>
+    <h1>Chat Interface:</h1>
+    <hr>
+    <% @messages.each do | message | %>
+        <h1><%= message[:from] %>: <%= message[:message_content] %> <%= message[:created_at] %></h1>
+    <% end %>
+    <hr>
+    <h1>Designer Controls</h1>
     <%= @project.designer.user.username %>
     <%= form_with model: @project, local: true do | form | %>
         <%= form.label "Designer Status:" %>
         <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ] %>
         <%= form.submit "Update" %>
     <% end %>
+    <hr>
+    <h1>Designer Chat</h1>
+    <%= form_with url: message_create_designer_path, local: true do | form | %>
+        <%= form.label "Message:" %>
+        <%= form.text_field :message_content %>
+        <%= form.submit "Send" %>
+    <% end %>
+<% elsif @project.client_id == current_user.client.id %>
+    <h1>Chat Interface:</h1>
+    <hr>
+    <% @messages.each do | message | %>
+        <h1><%= message[:from] %>: <%= message[:message_content] %> <%= message[:created_at] %></h1>
+    <% end %>
+    <hr>
+    <h1>Client Controls</h1>
+    <hr>
     <%= form_with model: @project, local: true do | form | %>
         <%= form.label "Client Status:" %>
         <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
@@ -64,45 +101,26 @@
         <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
         <%= form.submit "Update" %>
     <% end %>  
-<% end %>
-
-<% if @project.designer_id.nil? %>
-    <%= form_with model: @project, local: true do | form | %>
-        <%= form.submit "Confirm" %>
+    <hr>
+    <h1>Client Chat Input:</h1>
+    <%= form_with url: message_create_client_path, local: true do | form | %>
+        <%= form.label "Message:" %>
+        <%= form.text_field :message_content %>
+        <%= form.submit "Send" %>
     <% end %>
-<% else %>
+<% else @project.designer_id.nil? %>
     <p style="display: none"></p>
 <% end %>
 
+<hr>
+
 <%= link_to 'Remove Designer', remove_designer_path, method: 'put' %>
 
-
-
-<%= @project.designer_id %>
-
-
-
-<% @messages.each do | message | %>
-    <h1><%= message[:from] %></h1>
-    <h1><%= message[:message_content] %></h1>
-<% end %>
+<hr>
 
 
 
 
-<h1>Designer</h1>
-<%= form_with url: message_create_designer_path, local: true do | form | %>
-    <%= form.label "Message:" %>
-    <%= form.text_field :message_content %>
-    <%= form.submit "Send" %>
-<% end %>
-
-<h1>Client</h1>
-<%= form_with url: message_create_client_path, local: true do | form | %>
-    <%= form.label "Message:" %>
-    <%= form.text_field :message_content %>
-    <%= form.submit "Send" %>
-<% end %>
 
 
 
