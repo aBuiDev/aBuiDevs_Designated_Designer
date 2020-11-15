@@ -75,38 +75,32 @@ class ProjectsController < ApplicationController
     end
 
     def message_create_designer
-
         @project = Project.find params[:id]
-
         @message = Message.create(message_params)
-
         @message.update(project_id: @project.id)
-        @message.update(designer_id: current_user.designer.id)
+        @message.update(designer_id: @project.designer.id)
+        @message.update(from: @project.designer.user.username)
         @message.update(message_content: params[:message_content])
         @message.save!
-
         redirect_to project_path(@project)
     end
 
     def message_create_client
-
         @project = Project.find params[:id]
-
         @message = Message.create(message_params)
-
         @message.update(project_id: @project.id)
+        @message.update(client_id: @project.client.id)
+        @message.update(from: @project.client.user.username)
         @message.update(message_content: params[:message_content])
-        @message.update(client_id: current_user.client.id)
         @message.save!
-
         redirect_to project_path(@project)
-
     end
 
     private
 
-    # Project Authorisation Mechanisms
 
+
+    # Project Authorisation Mechanisms
     def project_params
         params.require(:project).permit(:title, :description, :payment_status, :designer_status, :client_status, :project_status, :picture, :designer_id, :client_id, :authenticity_token) if params[:project]
     end
@@ -115,14 +109,16 @@ class ProjectsController < ApplicationController
         params.require(:project).permit(:payment_status, :designer_status, :client_status, :project_status, :designer_id) if params[:project]
     end
 
-    # Message Authorisation Mechanisms
 
+
+    # Message Authorisation Mechanisms
     def message_params
-        params.require(:message).permit(:project_id, :message_content) if params[:message]
+        params.require(:message).permit(:project_id, :message_content, :from) if params[:message]
     end
 
-    # Client Authorisation Mechanisms
 
+
+    # Client Authorisation Mechanisms
     def client_params
         params.require(:client).permit(:user_id)
     end

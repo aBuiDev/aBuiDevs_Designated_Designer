@@ -83,6 +83,7 @@
 
 
 <% @messages.each do | message | %>
+    <h1><%= message[:from] %></h1>
     <h1><%= message[:message_content] %></h1>
 <% end %>
 
