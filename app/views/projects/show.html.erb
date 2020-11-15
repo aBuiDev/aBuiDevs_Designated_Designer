@@ -15,20 +15,8 @@
 <p>Project Description:</p>
 <p><%= @project[:description] %></p>
 
-<p>Payment Status:</p>
-<p><%= @project[:payment_status] %></p>
-
-<p>Designer Status:</p>
-<p><%= @project[:designer_status] %></p>
-
-<p>Client Status:</p>
-<p><%= @project[:client_status] %></p>
-
-<p>Project Status:</p>
-<p><%= @project[:project_status] %></p>
 
 
-<hr>
 
 
 
@@ -50,12 +38,13 @@
 
 
 
-
-
-
-
 <% if @project.designer_id == current_user.designer.id %>
+    <hr>
+    <p><%= @project.designer.user.username %>'s' Designer HUD<p>
+    <hr>
     <h1>Project Status Interface:</h1>
+    <hr>
+    <%= render "shared/project_statuses" %>
     <hr>
     <h1>Chat Interface:</h1>
     <hr>
@@ -64,7 +53,6 @@
     <% end %>
     <hr>
     <h1>Designer Controls</h1>
-    <%= @project.designer.user.username %>
     <%= form_with model: @project, local: true do | form | %>
         <%= form.label "Designer Status:" %>
         <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ] %>
@@ -78,6 +66,13 @@
         <%= form.submit "Send" %>
     <% end %>
 <% elsif @project.client_id == current_user.client.id %>
+    <hr>
+    <p><%= @project.client.user.username %>'s' Client HUD<p>
+    <hr>
+    <h1>Project Status Interface:</h1>
+    <hr>
+    <%= render "shared/project_statuses" %>
+    <hr>
     <h1>Chat Interface:</h1>
     <hr>
     <% @messages.each do | message | %>
