@@ -1,6 +1,7 @@
 <section>
     <% if user_signed_in? %>
         <p>Welcome Back, <%= current_user.username %>!</p>
+        <p>Your Account ID: <%= current_user.id %></p>
         <%= link_to "Sign Out", destroy_user_session_path, method: "delete" %>
     <% else %>
         <%= link_to "Sign In", new_user_session_path %>

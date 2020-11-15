@@ -10,9 +10,16 @@ class DesignersController < ApplicationController
     end
 
     def create
-        @designer = Designer.new(designer_params)
-        @designer.user_id = current_user.id
-        @designer.save!
+        @designer = Designer.new
+        if current_user.designer.nil?
+            @designer = Designer.new(designer_params)
+            @designer.user_id = current_user.id
+            if @designer.save!
+                redirect_to projects_path
+            end
+        else
+            redirect_to projects_path
+        end
     end
 
     def edit

@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   # Projects Routes
   resources :projects
   put '/projects/:id/remove_designer', to: 'projects#remove_designer', as: 'remove_designer'
-  post '/projects/:id/message_create', to: 'projects#message_create', as: 'message_create'
+  post '/projects/:id/message_create_designer', to: 'projects#message_create_designer', as: 'message_create_designer'
+  post '/projects/:id/message_create_client', to: 'projects#message_create_client', as: 'message_create_client'
 
   resources :clients
 

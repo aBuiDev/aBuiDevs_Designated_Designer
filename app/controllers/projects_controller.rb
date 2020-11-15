@@ -74,7 +74,21 @@ class ProjectsController < ApplicationController
         @messages = Message.all
     end
 
-    def message_create
+    def message_create_designer
+
+        @project = Project.find params[:id]
+
+        @message = Message.create(message_params)
+
+        @message.update(project_id: @project.id)
+        @message.update(designer_id: current_user.designer.id)
+        @message.update(message_content: params[:message_content])
+        @message.save!
+
+        redirect_to project_path(@project)
+    end
+
+    def message_create_client
 
         @project = Project.find params[:id]
 
@@ -82,6 +96,7 @@ class ProjectsController < ApplicationController
 
         @message.update(project_id: @project.id)
         @message.update(message_content: params[:message_content])
+        @message.update(client_id: current_user.client.id)
         @message.save!
 
         redirect_to project_path(@project)

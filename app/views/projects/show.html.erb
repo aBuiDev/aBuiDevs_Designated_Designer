@@ -4,99 +4,100 @@
 
 <hr>
 
-<% if current_user.client.id == @project.client_id %>
 
-    <h1><%= @project[:title] %></h1>
-    <p>Project ID: <%= @project.id %></p>
 
-    <p>Project Created By: <%= @project.client.user[:username] %> <br></p>
-    <p><%= @project.client.user[:username] %> ID: <%= @project.client_id %> </p>
+<h1><%= @project[:title] %></h1>
+<p>Project ID: <%= @project.id %></p>
 
-    <p>Project Description:</p>
-    <p><%= @project[:description] %></p>
+<p>Project Created By: <%= @project.client.user[:username] %> <br></p>
+<p><%= @project.client.user[:username] %> ID: <%= @project.client_id %> </p>
 
-    <p>Payment Status:</p>
-    <p><%= @project[:payment_status] %></p>
+<p>Project Description:</p>
+<p><%= @project[:description] %></p>
 
-    <p>Designer Status:</p>
-    <p><%= @project[:designer_status] %></p>
+<p>Payment Status:</p>
+<p><%= @project[:payment_status] %></p>
 
-    <p>Client Status:</p>
-    <p><%= @project[:client_status] %></p>
+<p>Designer Status:</p>
+<p><%= @project[:designer_status] %></p>
 
-    <p>Project Status:</p>
-    <p><%= @project[:project_status] %></p>
+<p>Client Status:</p>
+<p><%= @project[:client_status] %></p>
 
-    <p>Your Client ID: <%= current_user.client.id %></p>
-    <p>Your Account ID: <%= current_user.id %></p>
-    <p>Your Username: <%= current_user[:username] %></p>
+<p>Project Status:</p>
+<p><%= @project[:project_status] %></p>
 
-    <hr>
-
-    <% if @project.designer_id.nil? %> 
-        <p> No Designer Associated With Job </p>
-    <% elsif @project.designer_id == current_user.designer.id %>
-        <p> Designer Details, ID: <%= @project.designer_id %></p>
-        <%= form_with model: @project, local: true do | form | %>
-            <%= form.label "Designer Status:" %>
-            <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ] %>
-            <%= form.submit "Update" %>
-        <% end %>
-
-        <%= form_with model: @project, local: true do | form | %>
-            <%= form.label "Client Status:" %>
-            <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
-            <%= form.submit "Update" %>
-        <% end %>
-
-        <%= form_with model: @project, local: true do | form | %>
-            <%= form.label "Project Status:" %>
-            <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
-            <%= form.submit "Update" %>
-        <% end %>
-
-        <%= form_with model: @project, local: true do | form | %>
-            <%= form.label "Payment Status:" %>
-            <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
-            <%= form.submit "Update" %>
-        <% end %>
-    <% else %>
-        
-    <% end %>
-
-<% else %>
-
-    <p>Not Your Project to View</p>
-
-<% end %>
 
 <hr>
+
+
+
+
+
+
+
+
+
+<%# Designer HUD %>
 
 <% if @project.designer_id.nil? %>
-    <%= link_to 'Accept Job', designers_path, method: 'post' %>
+    <p style="display: none"></p>
+<% else %>
+    <%= @project.designer.user.username %>
+    <%= form_with model: @project, local: true do | form | %>
+        <%= form.label "Designer Status:" %>
+        <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ] %>
+        <%= form.submit "Update" %>
+    <% end %>
+    <%= form_with model: @project, local: true do | form | %>
+        <%= form.label "Client Status:" %>
+        <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
+        <%= form.submit "Update" %>
+    <% end %>
+    <%= form_with model: @project, local: true do | form | %>
+        <%= form.label "Project Status:" %>
+        <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
+        <%= form.submit "Update" %>
+    <% end %>
+    <%= form_with model: @project, local: true do | form | %>
+        <%= form.label "Payment Status:" %>
+        <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
+        <%= form.submit "Update" %>
+    <% end %>  
+<% end %>
+
+<% if @project.designer_id.nil? %>
+    <%= form_with model: @project, local: true do | form | %>
+        <%= form.submit "Confirm" %>
+    <% end %>
 <% else %>
     <p style="display: none"></p>
 <% end %>
 
-
-<%= form_with model: @project, local: true do | form | %>
-    <%= form.submit "Confirm" %>
-<% end %>
+<%= link_to 'Remove Designer', remove_designer_path, method: 'put' %>
 
 
-<% if current_user.client.id == @project.client_id %>
-    <%= link_to 'Remove Designer', remove_designer_path, method: 'put' %>
-<% else %>
-    <p style="display: none"></p>
-<% end %>
 
-<hr>
+<%= @project.designer_id %>
+
+
 
 <% @messages.each do | message | %>
     <h1><%= message[:message_content] %></h1>
 <% end %>
 
-<%= form_with url: message_create_path, local: true do | form | %>
+
+
+
+<h1>Designer</h1>
+<%= form_with url: message_create_designer_path, local: true do | form | %>
+    <%= form.label "Message:" %>
+    <%= form.text_field :message_content %>
+    <%= form.submit "Send" %>
+<% end %>
+
+<h1>Client</h1>
+<%= form_with url: message_create_client_path, local: true do | form | %>
     <%= form.label "Message:" %>
     <%= form.text_field :message_content %>
     <%= form.submit "Send" %>
