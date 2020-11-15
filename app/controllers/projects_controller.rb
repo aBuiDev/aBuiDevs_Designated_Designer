@@ -2,6 +2,9 @@ class ProjectsController < ApplicationController
 
     before_action :authenticate_user!, only: [:new]
     before_action :client_authorisation, only: [:create]
+    before_action :message_index
+
+    # Project Mechanisms
 
     def index
         @projects = Project.all
@@ -28,7 +31,6 @@ class ProjectsController < ApplicationController
     end
 
     def update
-
         @project = Project.find params[:id]
 
         if @project.designer_id.nil?
@@ -43,6 +45,18 @@ class ProjectsController < ApplicationController
         redirect_to project_path(@project)
     end
 
+    def destroy
+        @project = Project.find params[:id]
+
+        @project.destroy
+
+        redirect_to home_path
+    end
+
+    # ================================================================
+
+    # Designer Mechanisms
+
     def remove_designer
         @project = Project.find params[:id]
 
@@ -52,10 +66,31 @@ class ProjectsController < ApplicationController
         redirect_to project_path(@project)
     end
 
-    def destroy
+    # ================================================================
+
+    # Messaging System
+
+    def message_index
+        @messages = Message.all
+    end
+
+    def message_create
+
+        @project = Project.find params[:id]
+
+        @message = Message.create(message_params)
+
+        @message.update(project_id: @project.id)
+        @message.update(message_content: params[:message_content])
+        @message.save!
+
+        redirect_to project_path(@project)
+
     end
 
     private
+
+    # Project Authorisation Mechanisms
 
     def project_params
         params.require(:project).permit(:title, :description, :payment_status, :designer_status, :client_status, :project_status, :picture, :designer_id, :client_id, :authenticity_token) if params[:project]
@@ -65,9 +100,13 @@ class ProjectsController < ApplicationController
         params.require(:project).permit(:payment_status, :designer_status, :client_status, :project_status, :designer_id) if params[:project]
     end
 
-    def project_remove_designer_params
-        params.require(:project).permit(:designer_id) if params[:project]
+    # Message Authorisation Mechanisms
+
+    def message_params
+        params.require(:message).permit(:project_id, :message_content) if params[:message]
     end
+
+    # Client Authorisation Mechanisms
 
     def client_params
         params.require(:client).permit(:user_id)

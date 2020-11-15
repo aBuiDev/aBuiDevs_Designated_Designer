@@ -6,4 +6,5 @@ class Project < ApplicationRecord
   enum client_status: [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ]
   enum project_status: [ "Draft", "With Designer", "Pending Approval", "Project Complete" ]
   has_one_attached :picture
+  has_many :messages
 end

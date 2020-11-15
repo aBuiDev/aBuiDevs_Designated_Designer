@@ -2,6 +2,8 @@
 
 <%= image_tag @project.picture if @project.picture.attached? %>
 
+<hr>
+
 <% if current_user.client.id == @project.client_id %>
 
     <h1><%= @project[:title] %></h1>
@@ -28,6 +30,8 @@
     <p>Your Client ID: <%= current_user.client.id %></p>
     <p>Your Account ID: <%= current_user.id %></p>
     <p>Your Username: <%= current_user[:username] %></p>
+
+    <hr>
 
     <% if @project.designer_id.nil? %> 
         <p> No Designer Associated With Job </p>
@@ -60,13 +64,13 @@
         
     <% end %>
 
-
-
-    <% else %>
+<% else %>
 
     <p>Not Your Project to View</p>
 
 <% end %>
+
+<hr>
 
 <% if @project.designer_id.nil? %>
     <%= link_to 'Accept Job', designers_path, method: 'post' %>
@@ -85,6 +89,19 @@
 <% else %>
     <p style="display: none"></p>
 <% end %>
+
+<hr>
+
+<% @messages.each do | message | %>
+    <h1><%= message[:message_content] %></h1>
+<% end %>
+
+<%= form_with url: message_create_path, local: true do | form | %>
+    <%= form.label "Message:" %>
+    <%= form.text_field :message_content %>
+    <%= form.submit "Send" %>
+<% end %>
+
 
 
 
