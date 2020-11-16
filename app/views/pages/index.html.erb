@@ -1,7 +1,20 @@
 <section class="frontCoverSection">
     <section class="navBarSection">
-       <div>
-        <h1 class="designatedDesignerLogo">Designated Designer</h1>
+       <div class="navBarLogoTitleSection">
+          <i class="fas fa-magic designatedDesignerLogo"></i>
+          <h1 class="designatedDesignerTitle">Designated Designer</h1>
+       </div>
+        <div class="navBarLinksSection">
+          <div>
+              <% if user_signed_in? %>
+                  <p>Welcome Back, <%= current_user.username %>!</p>
+                  <p>Your Account ID: <%= current_user.id %></p>
+                  <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
+              <% else %>
+                  <%= link_to "Login", new_user_session_path, class: "navLinkButtons" %></a>
+                  <%= link_to "Register", new_user_registration_path, class: "navLinkButtons" %>
+              <% end %>
+          </div>
        </div>
     </section>
     <section>

@@ -71,6 +71,11 @@ table {
 	display: none;
 }
 
+/* Parent */
+
+
+/* Pages | Front | Cover Section */
+
 .frontCoverSection {
     width: 100%;
     height: 1000px;
@@ -79,17 +84,60 @@ table {
 }
 
 .navBarSection {
+	padding: 0px 50px 0px 50px;
 	width: 100%;
 	height: 100px;
-	padding: 0px 0px 0px 50px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.navBarLogoTitleSection {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
 
 .designatedDesignerLogo {
+	margin: 0px 30px 0px 0px;
+	color: white;
+	font-size: 40px;
+}
+
+.designatedDesignerTitle {
 	font-family: 'Nunito Sans', sans-serif;
 	font-size: 20px;
+	letter-spacing: 5px;
 	color: white;
 }
 
+.navBarLinksSection {
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 15px;
+	letter-spacing: 3px;
+	color: white;
+	display: flex;
+	align-items: center;
+}
+
+.navLinkButtons:link {
+	margin: 0px 5px 0px 5px;
+	color: white;
+	text-decoration: none;
+}
+
+.navLinkButtons:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.navLinkButtons:hover {
+	color: rgb(153, 0, 255);
+	text-decoration: none;
+}
+
+.navLinkButtons:active {
+	color: white;
+	text-decoration: none;
+}
