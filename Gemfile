@@ -44,3 +44,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise", "~> 4.7"
 
 gem "bootstrap", "~> 4.5"
+
+gem "aws-sdk-s3", "~> 1.84"
