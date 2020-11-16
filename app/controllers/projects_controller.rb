@@ -71,7 +71,8 @@ class ProjectsController < ApplicationController
     # Messaging System
 
     def message_index
-        @messages = Message.all
+        @client_messages = current_user.client.messages
+        @designer_messages = current_user.designer.messages
     end
 
     def message_create_designer

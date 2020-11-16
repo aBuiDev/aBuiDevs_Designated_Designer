@@ -48,9 +48,12 @@
     <hr>
     <h1>Chat Interface:</h1>
     <hr>
-    <% @messages.each do | message | %>
-        <h1><%= message[:from] %>: <%= message[:message_content] %> <%= message[:created_at] %></h1>
-    <% end %>
+        <% @designer_messages.each do | message | %>
+            <%= message[:message_content] %>
+        <% end %>
+        <% @client_messages.each do | message | %>
+            <%= message[:message_content] %>
+        <% end %>
     <hr>
     <h1>Designer Controls</h1>
     <%= form_with model: @project, local: true do | form | %>
@@ -75,9 +78,12 @@
     <hr>
     <h1>Chat Interface:</h1>
     <hr>
-    <% @messages.each do | message | %>
-        <h1><%= message[:from] %>: <%= message[:message_content] %> <%= message[:created_at] %></h1>
-    <% end %>
+        <% @designer_messages.each do | message | %>
+            <%= message[:message_content] %>
+        <% end %>
+        <% @client_messages.each do | message | %>
+            <%= message[:message_content] %>
+        <% end %>
     <hr>
     <h1>Client Controls:</h1>
     <hr>
