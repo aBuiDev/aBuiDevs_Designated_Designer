@@ -10,9 +10,11 @@ class ClientsController < ApplicationController
     end
 
     def create
-        @client = Client.new(client_params)
-        @client.user_id = current_user.id
-        @client.save!
+        if current_user.client.nil?
+            @client = Client.new(client_params)
+            @client.user_id = current_user.id
+            @client.save!
+        end
         if current_user.designer.nil?
             @designer = Designer.new(designer_params)
             @designer.user_id = current_user.id

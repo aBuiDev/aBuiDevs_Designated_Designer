@@ -10,18 +10,18 @@ class DesignersController < ApplicationController
     end
 
     def create
-        @designer = Designer.new
-        @client = Client.new
         if current_user.designer.nil?
             @designer = Designer.new(designer_params)
             @designer.user_id = current_user.id
             @designer.save!
-        elsif current_user.client.nil?
+        end
+        if current_user.client.nil?
             @client = Client.new(client_params)
             @client.user_id = current_user.id
-            if @client.save!
-                redirect_to projects_path
-            end
+            @client.save!
+            redirect_to projects_path
+        else
+            redirect_to projects_path
         end
     end
 
