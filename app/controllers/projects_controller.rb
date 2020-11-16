@@ -2,7 +2,6 @@ class ProjectsController < ApplicationController
 
     before_action :authenticate_user!, only: [:new]
     before_action :client_authorisation, only: [:create]
-    before_action :message_index
 
     # Project Mechanisms
 
@@ -12,13 +11,18 @@ class ProjectsController < ApplicationController
 
     def new
         @project = Project.new
+        @project_chatbox = Chatbox.new
     end
 
     def create
         @project = Project.new(project_params)
         @project.client_id = current_user.client.id
         if @project.save!
-            redirect_to project_path(@project)
+            @project_chatbox = Chatbox.new
+            @project_chatbox.project_id = @project.id
+            if @project_chatbox.save!
+               redirect_to project_path(@project, @project_chatbox)
+            end
         end
     end
 
@@ -70,31 +74,24 @@ class ProjectsController < ApplicationController
 
     # Messaging System
 
-    def message_index
-        @client_messages = current_user.client.messages
-        @designer_messages = current_user.designer.messages
-    end
-
     def message_create_designer
         @project = Project.find params[:id]
+        @project_chatbox = @project.chatbox
         @message = Message.create(message_params)
-        @message.update(project_id: @project.id)
-        @message.update(designer_id: @project.designer.id)
+        @message.update(chatbox_id: @project_chatbox.id)
         @message.update(from: @project.designer.user.username)
         @message.update(message_content: params[:message_content])
         @message.save!
-        redirect_to project_path(@project)
     end
 
     def message_create_client
         @project = Project.find params[:id]
+        @project_chatbox = @project.chatbox
         @message = Message.create(message_params)
-        @message.update(project_id: @project.id)
-        @message.update(client_id: @project.client.id)
+        @message.update(chatbox_id: @project_chatbox.id)
         @message.update(from: @project.client.user.username)
         @message.update(message_content: params[:message_content])
         @message.save!
-        redirect_to project_path(@project)
     end
 
     private
@@ -114,7 +111,7 @@ class ProjectsController < ApplicationController
 
     # Message Authorisation Mechanisms
     def message_params
-        params.require(:message).permit(:project_id, :message_content, :from) if params[:message]
+        params.require(:message).permit(:project_id, :message_content) if params[:message]
     end
 
 

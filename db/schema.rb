@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_105606) do
+ActiveRecord::Schema.define(version: 2020_11_16_095551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,13 @@ ActiveRecord::Schema.define(version: 2020_11_15_105606) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "chatboxes", force: :cascade do |t|
+    t.bigint "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_chatboxes_on_project_id"
+  end
+
   create_table "clients", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -77,16 +84,12 @@ ActiveRecord::Schema.define(version: 2020_11_15_105606) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.bigint "project_id", null: false
-    t.string "message_content"
+    t.bigint "chatbox_id"
+    t.text "message_content"
+    t.string "from"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "designer_id"
-    t.bigint "client_id"
-    t.text "from"
-    t.index ["client_id"], name: "index_messages_on_client_id"
-    t.index ["designer_id"], name: "index_messages_on_designer_id"
-    t.index ["project_id"], name: "index_messages_on_project_id"
+    t.index ["chatbox_id"], name: "index_messages_on_chatbox_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -119,12 +122,11 @@ ActiveRecord::Schema.define(version: 2020_11_15_105606) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
+  add_foreign_key "chatboxes", "projects"
   add_foreign_key "clients", "users"
   add_foreign_key "designers", "users"
   add_foreign_key "details", "users"
-  add_foreign_key "messages", "clients"
-  add_foreign_key "messages", "designers"
-  add_foreign_key "messages", "projects"
+  add_foreign_key "messages", "chatboxes"
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "designers"
 end
