@@ -81,9 +81,7 @@ class ProjectsController < ApplicationController
         @message.update(chatbox_id: @project_chatbox.id)
         @message.update(from: @project.designer.user.username)
         @message.update(message_content: params[:message_content])
-        if @message.save!
-            redirect_to project_path(@project)
-        end
+        @message.save!
     end
 
     def message_create_client
@@ -93,9 +91,7 @@ class ProjectsController < ApplicationController
         @message.update(chatbox_id: @project_chatbox.id)
         @message.update(from: @project.client.user.username)
         @message.update(message_content: params[:message_content])
-        if @message.save!
-            redirect_to project_path(@project)
-        end
+        @message.save!
     end
 
     private

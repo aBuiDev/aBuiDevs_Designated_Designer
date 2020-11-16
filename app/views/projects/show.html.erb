@@ -49,8 +49,7 @@
     <h1>Chat Interface:</h1>
     <hr>
     <% @project.chatbox.messages.each do | message | %>
-        <h1><%= message[:from] %></h1>
-        <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
+        <%= message[:message_content] %>
     <% end %>
     <hr>
     <h1>Designer Controls</h1>
@@ -75,11 +74,6 @@
     <%= render "shared/project_statuses" %>
     <hr>
     <h1>Chat Interface:</h1>
-    <hr>
-    <% @project.chatbox.messages.each do | message | %>
-        <h1><%= message[:from] %></h1>
-        <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
-    <% end %>
     <hr>
     <%= @project.chatbox.id %>
     <hr>
