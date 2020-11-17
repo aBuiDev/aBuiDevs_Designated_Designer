@@ -150,6 +150,17 @@ table {
 
 /* Pages | Front | Cover Section | Form */
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+::placeholder {
+	color: rgba(2, 204, 255, 0.459);
+  }
+
 .frontCoverFormSection {
 	width: 100%;
 	display: flex;
@@ -178,13 +189,45 @@ table {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
+.formInputFieldRememberContainer {
+	width: 500px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
-::placeholder {
-	color: rgba(2, 204, 255, 0.459);
-  }
+.coverFormLoginButton {
+	font-family: 'Nunito Sans', sans-serif;
+	color: rgb(255, 255, 255);
+	width: 150px;
+	height: 25px;
+	background: none;
+	border: 1px solid rgb(255, 255, 255);
+}
+
+.coverFormLoginButton:hover {
+	color: rgb(153, 0, 255);
+	border: 1px solid rgb(153, 0, 255);
+}
+
+.rememberMeCheckbox:after {
+	background-color: rgb(153, 0, 255);
+}
+
+.rememberMeLabel {
+	font-family: 'Nunito Sans', sans-serif;
+	color:rgb(255, 255, 255);
+	padding: 0px 0px 0px 10px;
+}
+
+/* Pages | Front | Separator | One */
+
+.homePageBodySeparatorOne {
+	width: 100%;
+	height: 100px;
+	background-color: rgb(61, 61, 61);
+}
+
+/* Logged In | Pages | Front | Cover | New & View Projects */

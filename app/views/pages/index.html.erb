@@ -7,52 +7,55 @@
         <div class="navBarLinksSection">
           <div>
               <% if user_signed_in? %>
-                  <p>Welcome Back, <%= current_user.username %>!</p>
-                  <p>Your Account ID: <%= current_user.id %></p>
+                  <p>Logged in as: <%= current_user.username %> | Account ID: <%= current_user.id %></p>
                   <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
+                  <%= link_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
+                  <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
               <% else %>
-                  <%= link_to "Login", new_user_session_path, class: "navLinkButtons" %></a>
                   <%= link_to "Register", new_user_registration_path, class: "navLinkButtons" %>
               <% end %>
           </div>
        </div>
     </section>
-    <section class="frontCoverFormSection">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="formInputFieldContainer">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email Here", class: "formInputField" %>
-          </div>
-          <div class="formInputFieldContainer">
-            <%= f.password_field :password, autocomplete: "current-password", placeholder: "Your Password Here", class: "formInputField" %>
-          </div>
-          <% if devise_mapping.rememberable? %>
-              <div class="formInputFieldContainer">
-                   <div class="checkBoxContainer">
-                      <%= f.check_box :remember_me %>
-                      <%= f.label :remember_me %>
-                   </div>
+    <% if user_signed_in? %>
+       <section class="frontCoverFormSection">
+            <div>
+                <%= button_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
+            </div>
+            <div>
+                <%= button_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
+            </div>
+       </section>
+    <% else %>
+       <section class="frontCoverFormSection">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="formInputFieldContainer">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email Here", class: "formInputField" %>
+            </div>
+            <div class="formInputFieldContainer">
+              <%= f.password_field :password, autocomplete: "current-password", placeholder: "Your Password Here", class: "formInputField" %>
+            </div>
+            <div class="formInputFieldRememberContainer">
+                <% if devise_mapping.rememberable? %>
+                    <div class="coverFormCheckboxSection">
+                        <%= f.check_box :remember_me, class: "rememberMeCheckbox", id: "testID"%>
+                        <%= f.label :remember_me, class: "rememberMeLabel" %>
+                    </div>    
+                <% end %>
+                    <div class="coverFormLoginButtonSection">
+                        <%= f.submit "Log in", class: "coverFormLoginButton" %>
+                    </div>
+            </div>
           <% end %>
-              <div class="actions">
-                  <%= f.submit "Log in" %>
-              </div>
-              </div>
-        <% end %>
-    </section>
+      </section>
+    <% end %>
+</section>
+<section class="homePageBodySeparatorOne">
+
 </section>
 
 
-<%= render "shared/navbar" %>
 
 
-
-
-<%= render "devise/shared/links" %>
-
-<%= button_to "New Job", '/clients', method: 'post' %>
-
-<hr>
-
-
-<%= button_to 'View Jobs', designers_path, method: 'post' %>
 
 

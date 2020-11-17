@@ -51,9 +51,7 @@ class ProjectsController < ApplicationController
 
     def destroy
         @project = Project.find params[:id]
-
         @project.destroy
-
         redirect_to home_path
     end
 
@@ -63,11 +61,14 @@ class ProjectsController < ApplicationController
 
     def remove_designer
         @project = Project.find params[:id]
-
         @project.update(designer_id: nil)
-        @project.save!
-
-        redirect_to project_path(@project)
+        if @project.save!
+            @project_chatbox = Chatbox.find_by(project_id: @project.id)
+            @project_chatbox.messages.destroy_all
+            if @project_chatbox.save!
+                redirect_to project_path(@project)
+            end
+        end  
     end
 
     # ================================================================
