@@ -39,13 +39,8 @@
 
 <section class="HUDSection">
     <section class="InterfaceSection">
-        <% if @project.designer_id == current_user.designer.id %>
-
-        <% @project.chatbox.messages.each do | message | %>
-            <h1><%= message[:from] %></h1>
-            <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
-        <% end %>
-            
+        <% if @project.designer_id == current_user.designer.id && @project.client.id != current_user.client.id %>
+  
         <div class="projectStatusInterfaceOwnerContainer">
             <p class="projectStatusInterfaceDesignerTile"><%= @project.designer.user.username %>'s' Designer HUD<p>
         </div>
@@ -61,7 +56,7 @@
                 </div>
                 <div class="projectStatusElementContainer">
                     <p class="statusTitle">Designer Status:</p>
-                    <p class="statusOutput"><%= @project[:designer_status] %></p>
+                    <p class="designerStatusOutput"><%= @project[:designer_status] %></p>
                 </div>
                 <div class="projectStatusElementContainer">
                     <p class="statusTitle">Client Status:</p>
@@ -76,7 +71,7 @@
 
         <section class="projectStatusesContainer">
                 <%= form_with model: @project, local: true do | form | %>
-                    <div class="formInputFieldContainer">
+                    <div class="userControlsFormInputFieldContainer">
                         <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ], placeholder: "Select Status from Dropdown", class: "formInputField" %>
                         </div>
                         <%= form.submit "Update", class: "coverFormLoginButton" %>
@@ -84,14 +79,21 @@
                 <% end %>      
         </section>
 
-<h1>Chat Interface:</h1>
+        <h1>Chat Interface:</h1>
 
-            <h1>Designer Messaging Interface</h1>
-            <%= form_with url: message_create_designer_path, local: true do | form | %>
-                <%= form.label "Message:" %>
-                <%= form.text_field :message_content %>
-                <%= form.submit "Send" %>
-            <% end %>
+        <% @project.chatbox.messages.each do | message | %>
+            <h1><%= message[:from] %></h1>
+            <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
+        <% end %>
+
+        <h1>Designer Messaging Interface</h1>
+
+        <%= form_with url: message_create_designer_path, local: true do | form | %>
+            <%= form.label "Message:" %>
+            <%= form.text_field :message_content %>
+            <%= form.submit "Send" %>
+        <% end %>
+        
     </section>
 
     <section class="clientInterfaceSection">
@@ -112,7 +114,7 @@
                     </div>
                     <div class="projectStatusElementContainer">
                         <p class="statusTitle">Designer Status:</p>
-                        <p class="statusOutput"><%= @project[:designer_status] %></p>
+                        <p class="designerStatusOutput"><%= @project[:designer_status] %></p>
                     </div>
                     <div class="projectStatusElementContainer">
                         <p class="statusTitle">Client Status:</p>
@@ -124,7 +126,29 @@
                     </div>
                 </div>
             </section>
-            
+
+            <h1>Client Controls:</h1>
+            <section class="projectStatusesContainer">
+            <%= form_with model: @project, local: true do | form | %>
+                <div class="userControlsFormInputFieldContainer">
+                    <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
+                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                </div>
+            <% end %>  
+            <%= form_with model: @project, local: true do | form | %>
+                <div class="userControlsFormInputFieldContainer">
+                    <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
+                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                </div>
+            <% end %>
+            <%= form_with model: @project, local: true do | form | %>
+                <div class="userControlsFormInputFieldContainer">
+                    <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
+                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                </div>
+            <% end %>
+            </section>
+
             <h1>Chat Interface:</h1>
             
             <% @project.chatbox.messages.each do | message | %>
@@ -132,33 +156,14 @@
                 <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
             <% end %>
 
-            <h1>Client Controls:</h1>
-            <section class="projectStatusesContainer">
-            <%= form_with model: @project, local: true do | form | %>
-                <div class="formInputFieldContainer">
-                    <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
-                    <%= form.submit "Update", class: "coverFormLoginButton" %>
-                </div>
-            <% end %>
-            <%= form_with model: @project, local: true do | form | %>
-                <div class="formInputFieldContainer">
-                    <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
-                    <%= form.submit "Update", class: "coverFormLoginButton" %>
-                </div>
-            <% end %>
-            <%= form_with model: @project, local: true do | form | %>
-                <div class="formInputFieldContainer">
-                    <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
-                    <%= form.submit "Update", class: "coverFormLoginButton" %>
-                </div>
-            <% end %>  
-            </section>
             <h1>Client Chat Input:</h1>
             <%= form_with url: message_create_client_path, local: true do | form | %>
                 <%= form.label "Message:" %>
                 <%= form.text_field :message_content %>
                 <%= form.submit "Send" %>
             <% end %>
+        <% elsif @project.designer_id == @project.client_id %>
+            <p style="display: none"></p>
         <% elsif @project.designer_id.nil? %>
             <p style="display: none"></p>
         <% elsif @project.client_id.nil? %>

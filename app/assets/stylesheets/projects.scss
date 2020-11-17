@@ -103,6 +103,10 @@
 
 .InterfaceSection {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .projectStatusInterfaceOwnerContainer {
@@ -144,11 +148,12 @@
 }
 
 .projectStatusesContainer {
-    width: 80%;
+    width: 60%;
     display: flex;
     flex-direction: row;
     text-align: center;
     justify-content: space-around;
+    align-items: center;
 }
 
 .projectStatusElementContainer {
@@ -171,7 +176,23 @@
     color: rgb(0, 189, 164);
     border: 2px solid rgb(0, 189, 164);
     background-color:  rgba(0, 189, 189, 0.267);
-    width: 150px;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.designerStatusOutput {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 15px 0px 0px 0px;
+    color: rgb(0, 145, 189);
+    border: 2px solid rgb(68, 233, 255);
+    background-color:  rgba(0, 204, 255, 0.267);
+    width: 200px;
     height: 100px;
     text-align: center;
     display: flex;
@@ -185,5 +206,13 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.userControlsFormInputFieldContainer {
+	width: 300px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
