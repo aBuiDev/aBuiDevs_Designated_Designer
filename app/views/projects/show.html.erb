@@ -15,7 +15,7 @@
 </section>
 
 <section class="projectBriefSection">
-    <p class="projectBriefSectionTitle">Project Design Brief:</p>
+    <p class="projectBriefSectionTitle">Project Design Brief</p>
     <div class="projectBriefSectionContentContainer">
         <p class="projectBriefContent"><%= @project[:description] %></p>
     </div>
@@ -74,11 +74,12 @@
             </div>
         </section>
 
-        <section class="userControlsInterfaceSection">
+        <section class="projectStatusesContainer">
                 <%= form_with model: @project, local: true do | form | %>
-                    <div class="userControls">
-                        <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ], placeholder: "Select Status", class: "formInputField" %>
-                        <%= form.submit "Update" %>
+                    <div class="formInputFieldContainer">
+                        <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ], placeholder: "Select Status from Dropdown", class: "formInputField" %>
+                        </div>
+                        <%= form.submit "Update", class: "coverFormLoginButton" %>
                     </div>
                 <% end %>      
         </section>
@@ -95,38 +96,63 @@
 
     <section class="clientInterfaceSection">
         <% elsif @project.client_id == current_user.client.id %>
-            <hr>
-            <p><%= @project.client.user.username %>'s' Client HUD<p>
-            <hr>
-            <h1>Project Status Interface:</h1>
-            <hr>
-            <%= render "shared/project_statuses" %>
-            <hr>
+            
+            <div class="projectStatusInterfaceOwnerContainer">
+                <p class="projectStatusInterfaceDesignerTile"><%= @project.client.user.username %>'s' Client HUD<p>
+            </div>
+            <div class="projectStatusInterfaceContainer">
+                <p class="projectStatusInterfaceTitle">Project Status Interface:</p>
+            </div>
+            
+            <section class="projectStatusesSection">
+                <div class="projectStatusesContainer">
+                    <div class="projectStatusElementContainer">
+                        <p class="statusTitle">Payment Status:</p>
+                        <p class="statusOutput"><%= @project[:payment_status] %></p>
+                    </div>
+                    <div class="projectStatusElementContainer">
+                        <p class="statusTitle">Designer Status:</p>
+                        <p class="statusOutput"><%= @project[:designer_status] %></p>
+                    </div>
+                    <div class="projectStatusElementContainer">
+                        <p class="statusTitle">Client Status:</p>
+                        <p class="statusOutput"><%= @project[:client_status] %></p>
+                    </div>
+                    <div class="projectStatusElementContainer">
+                        <p class="statusTitle">Project Status:</p>
+                        <p class="statusOutput"><%= @project[:project_status] %></p>
+                    </div>
+                </div>
+            </section>
+            
             <h1>Chat Interface:</h1>
-            <hr>
+            
             <% @project.chatbox.messages.each do | message | %>
                 <h1><%= message[:from] %></h1>
                 <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
             <% end %>
-            <hr>
+
             <h1>Client Controls:</h1>
-            <hr>
+            <section class="projectStatusesContainer">
             <%= form_with model: @project, local: true do | form | %>
-                <%= form.label "Client Status:" %>
-                <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
-                <%= form.submit "Update" %>
+                <div class="formInputFieldContainer">
+                    <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
+                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                </div>
             <% end %>
             <%= form_with model: @project, local: true do | form | %>
-                <%= form.label "Project Status:" %>
-                <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
-                <%= form.submit "Update" %>
+                <div class="formInputFieldContainer">
+                    <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
+                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                </div>
             <% end %>
             <%= form_with model: @project, local: true do | form | %>
-                <%= form.label "Payment Status:" %>
-                <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
-                <%= form.submit "Update" %>
+                <div class="formInputFieldContainer">
+                    <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
+                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                </div>
             <% end %>  
-            <hr>
+            </section>
             <h1>Client Chat Input:</h1>
             <%= form_with url: message_create_client_path, local: true do | form | %>
                 <%= form.label "Message:" %>
