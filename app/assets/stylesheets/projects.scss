@@ -5,6 +5,11 @@
 .projectImageViewportSection {
     width: 100%;
     height: 800px;
+    margin: 0px 0px 50px 0px;
+    background-image: url("paper.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
@@ -70,3 +75,114 @@
     font-size: 25px;
     margin: 0px 0px 25px 0px;
 }
+
+.projectBriefSectionContentContainer {
+    width: 50%;
+}
+
+.projectBriefContent {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+    line-height: 2;
+}
+
+// HUD Interface
+
+.HUDSection {
+    color: white;
+    width: 100%;
+    height: 1000px;
+    background-image: url("hud.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.InterfaceSection {
+    width: 100%;
+}
+
+.projectStatusInterfaceOwnerContainer {
+    margin: 50px 0px 0px 0px;
+}
+
+.projectStatusInterfaceContainer {
+    margin: 15px 0px 25px 0px;
+}
+
+.projectStatusInterfaceDesignerTile {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    margin: 0px 0px 25px 0px;
+}
+
+.projectStatusInterfaceTitle {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+
+.projectStatusInterfaceOwner {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    font-size: 15px;
+    margin: 0px 0px 25px 0px;
+}
+
+.projectStatusesSection {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projectStatusesContainer {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.projectStatusElementContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.statusTitle {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+}
+
+.statusOutput {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 15px 0px 0px 0px;
+    color: rgb(0, 189, 164);
+    border: 2px solid rgb(0, 189, 164);
+    background-color:  rgba(0, 189, 189, 0.267);
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userControlsInterfaceSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
