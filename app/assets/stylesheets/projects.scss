@@ -1,3 +1,22 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.projectImageViewportSection {
+    width: 100%;
+    height: 800px;
+    background-color: rgb(211, 196, 163);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectImageViewport {
+    width: 800px;
+    height: 700px;
+    box-shadow: 2px 5px 10px #888888;
+    border: 1px solid rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,8 +1,12 @@
 <%= render "shared/navbar" %>
 
-<%= image_tag @project.picture if @project.picture.attached? %>
+<section class="projectImageViewportSection">
+    <div class="projectImageViewport" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    </div>
+</section>
 
-<hr>
+
+
 
 
 
@@ -19,6 +23,10 @@
 
 
 
+
+<div class="index-img">
+    <div class="bg-img" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>)"></div>
+</div>
 
 
 

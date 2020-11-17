@@ -71,10 +71,17 @@ table {
 	display: none;
 }
 
-/* Parent | Global */
+/* Global | Nav */
+
+.globalNavBarSection {
+	background-color: rgb(61, 61, 61);
+	width: 100%;
+	height: 100px;
+}
+
+/* Global | Form */
 
 
-/* Parent | Form */
 
 /* Pages | Front | Cover Section */
 
@@ -316,3 +323,4 @@ button:focus {
 	display: flex;
 	justify-content: flex-end;
 }
+
