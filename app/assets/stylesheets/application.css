@@ -71,8 +71,10 @@ table {
 	display: none;
 }
 
-/* Parent */
+/* Parent | Global */
 
+
+/* Parent | Form */
 
 /* Pages | Front | Cover Section */
 
@@ -80,8 +82,11 @@ table {
     width: 100%;
     height: 1000px;
     background-image: url("artndesign.jpg");
-    background-position: center;
+	background-position: center;
+	position: relative;
 }
+
+/* Pages | Front | Cover Section | Nav Bar */
 
 .navBarSection {
 	padding: 0px 50px 0px 50px;
@@ -114,15 +119,16 @@ table {
 
 .navBarLinksSection {
 	font-family: 'Nunito Sans', sans-serif;
-	font-size: 15px;
-	letter-spacing: 3px;
 	color: white;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 }
 
 .navLinkButtons:link {
 	margin: 0px 5px 0px 5px;
+	font-size: 15px;
+	letter-spacing: 3px;
 	color: white;
 	text-decoration: none;
 }
@@ -141,3 +147,44 @@ table {
 	color: white;
 	text-decoration: none;
 }
+
+/* Pages | Front | Cover Section | Form */
+
+.frontCoverFormSection {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	position: absolute;
+	bottom: 20%;
+}
+
+.formInputFieldContainer {
+	width: 500px;
+	height: 50px;
+}
+
+.formInputField {
+	font-family: 'Nunito Sans', sans-serif;
+	width: 100%;
+	height: 40px;
+	color: white;
+	text-align: center;
+	border: none;
+    background-image: none;
+    background-color: transparent;
+	box-shadow: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+::placeholder {
+	color: rgba(2, 204, 255, 0.459);
+  }
