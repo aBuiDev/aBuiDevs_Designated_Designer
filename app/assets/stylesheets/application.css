@@ -117,6 +117,13 @@ table {
 	color: white;
 }
 
+.frontCoverUserDetails {
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 15px;
+	letter-spacing: 3px;
+	color: white;
+}
+
 .navBarLinksSection {
 	font-family: 'Nunito Sans', sans-serif;
 	color: white;
