@@ -15,12 +15,10 @@
     </div>
 </section>
 
-
-
-
-<p>Project Design Brief:</p>
-<p><%= @project[:description] %></p>
-
+<section class="projectBriefSection">
+<p class="projectBriefSectionTitle">Project Design Brief:</p>
+<p class="projectBrief"><%= @project[:description] %></p>
+</section>
 
 
 
@@ -31,7 +29,9 @@
 
 <%# Designer HUD %>
 
-<% if @project.designer_id.nil? %>
+
+
+<% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
     <%= form_with model: @project, local: true do | form | %>
         <%= form.submit "Join Project" %>
     <% end %>
