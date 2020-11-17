@@ -20,12 +20,12 @@
        </div>
     </section>
     <% if user_signed_in? %>
-       <section class="frontCoverFormSection">
+       <section class="frontCoverUserControls">
             <div>
-                <%= button_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
+                <%= button_to "New Job", '/clients', method: 'post', class: "userControls" %>
             </div>
             <div>
-                <%= button_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
+                <%= button_to 'View Jobs', designers_path, method: 'post', class: "userControls" %>
             </div>
        </section>
     <% else %>

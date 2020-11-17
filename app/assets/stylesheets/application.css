@@ -83,6 +83,8 @@ table {
     height: 1000px;
     background-image: url("artndesign.jpg");
 	background-position: center;
+	display: flex;
+	justify-content: center;
 	position: relative;
 }
 
@@ -165,7 +167,7 @@ button:focus {
 }
 
 ::placeholder {
-	color: rgba(2, 204, 255, 0.459);
+	color: rgba(108, 226, 255, 0.623);
   }
 
 .frontCoverFormSection {
@@ -238,3 +240,27 @@ button:focus {
 }
 
 /* Logged In | Pages | Front | Cover | New & View Projects */
+
+.frontCoverUserControls {
+	width: 420px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	position: absolute;
+	bottom: 20%;
+}
+
+.userControls {
+	font-family: 'Nunito Sans', sans-serif;
+	width: 200px;
+	height: 50px;
+	color: white;
+	background-image: none;
+    background-color: transparent;
+	border: 1px solid white;
+}
+
+.userControls:hover {
+	border: 1px solid rgb(153, 0, 255);
+}
