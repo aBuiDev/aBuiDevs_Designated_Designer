@@ -75,14 +75,12 @@
         </section>
 
         <section class="userControlsInterfaceSection">
-            <div>
                 <%= form_with model: @project, local: true do | form | %>
                     <div class="userControls">
                         <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ], placeholder: "Select Status", class: "formInputField" %>
                         <%= form.submit "Update" %>
                     </div>
-                <% end %>  
-            </div>      
+                <% end %>      
         </section>
 
 <h1>Chat Interface:</h1>
