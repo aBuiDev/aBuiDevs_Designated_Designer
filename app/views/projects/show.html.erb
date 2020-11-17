@@ -79,12 +79,13 @@
                 <% end %>      
         </section>
 
-        <h1>Chat Interface:</h1>
+        <h1 class="interfaceHeadings">Chat Interface:</h1>
 
-        <% @project.chatbox.messages.each do | message | %>
-            <h1><%= message[:from] %></h1>
-            <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
-        <% end %>
+            <% @project.chatbox.messages.each do | message | %>
+                <div class="messageBox">
+                    <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
+                </div>
+            <% end %>
 
         <h1>Designer Messaging Interface</h1>
 
@@ -127,41 +128,59 @@
                 </div>
             </section>
 
-            <h1>Client Controls:</h1>
+            <h1 class="interfaceHeadings">Client Controls:</h1>
+
             <section class="projectStatusesContainer">
             <%= form_with model: @project, local: true do | form | %>
                 <div class="userControlsFormInputFieldContainer">
-                    <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
-                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                    <div class="updateStatusSelectorElement">
+                        <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
+                    </div>
+                    <div>
+                        <%= form.submit "Update", class: "coverFormLoginButton" %>
+                    </div>
                 </div>
             <% end %>  
             <%= form_with model: @project, local: true do | form | %>
                 <div class="userControlsFormInputFieldContainer">
-                    <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
-                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                    <div class="updateStatusSelectorElement">
+                        <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
+                    </div>
+                    <div>
+                        <%= form.submit "Update", class: "coverFormLoginButton" %>
+                    </div>
                 </div>
             <% end %>
             <%= form_with model: @project, local: true do | form | %>
                 <div class="userControlsFormInputFieldContainer">
-                    <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
-                    <%= form.submit "Update", class: "coverFormLoginButton" %>
+                    <div class="updateStatusSelectorElement">
+                        <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
+                    </div>
+                    <div>
+                        <%= form.submit "Update", class: "coverFormLoginButton" %>
+                    </div>
                 </div>
             <% end %>
             </section>
 
-            <h1>Chat Interface:</h1>
+            <h1 class="interfaceHeadings">Chat Interface:</h1>
             
             <% @project.chatbox.messages.each do | message | %>
-                <h1><%= message[:from] %></h1>
-                <h1><%= message[:message_content] %> <%= message[:datetime] %></h1>
+                <div class="messageBox">
+                    <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
+                </div>
             <% end %>
 
-            <h1>Client Chat Input:</h1>
+            <h1 class="interfaceHeadings">Client Chat Input:</h1>
+
             <%= form_with url: message_create_client_path, local: true do | form | %>
                 <%= form.label "Message:" %>
                 <%= form.text_field :message_content %>
                 <%= form.submit "Send" %>
             <% end %>
+
+            </section>
+
         <% elsif @project.designer_id == @project.client_id %>
             <p style="display: none"></p>
         <% elsif @project.designer_id.nil? %>
@@ -170,7 +189,6 @@
             <p style="display: none"></p>
         <% end %>
     </section>
-</section>
 
     <%# Remove Designer Button %>
 
