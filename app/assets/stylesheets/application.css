@@ -120,6 +120,7 @@ table {
 }
 
 .designatedDesignerTitle {
+	width: 400px;
 	font-family: 'Nunito Sans', sans-serif;
 	font-size: 20px;
 	letter-spacing: 5px;
@@ -127,6 +128,7 @@ table {
 }
 
 .frontCoverUserDetails {
+	width: 400px;
 	font-family: 'Nunito Sans', sans-serif;
 	font-size: 15px;
 	letter-spacing: 3px;
@@ -134,15 +136,17 @@ table {
 }
 
 .navBarLinksSection {
+	width: 400px;
 	font-family: 'Nunito Sans', sans-serif;
 	color: white;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .navLinkButtons:link {
-	margin: 0px 5px 0px 5px;
+	margin: 0px 0px 0px 50px;
 	font-size: 15px;
 	letter-spacing: 3px;
 	color: white;

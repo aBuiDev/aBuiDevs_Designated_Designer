@@ -1,6 +1,16 @@
 <%= render "shared/navbar" %>
 
+<section class="projectInformationContainer">
+    <h1 class="projectTitle"><%= @project[:title] %><h1>
+    <div class="projectInformationElementSection">
+        <p class="projectInformationElement">Project Created By: <%= @project.client.user[:username] %></p>
+        <p class="projectInformationElement">|</p>
+        <p class="projectInformationElement">Project ID: <%= @project.id %></p>
+    </div>
+</section>
+
 <section class="projectImageViewportSection">
+    <p class="viewportTag">Viewport:</p>
     <div class="projectImageViewport" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
     </div>
 </section>
@@ -8,25 +18,10 @@
 
 
 
-
-
-<h1><%= @project[:title] %></h1>
-<p>Project ID: <%= @project.id %></p>
-
-<p>Project Created By: <%= @project.client.user[:username] %> <br></p>
-<p><%= @project.client.user[:username] %> ID: <%= @project.client_id %> </p>
-
-<p>Project Description:</p>
+<p>Project Design Brief:</p>
 <p><%= @project[:description] %></p>
 
 
-
-
-
-
-<div class="index-img">
-    <div class="bg-img" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>)"></div>
-</div>
 
 
 
