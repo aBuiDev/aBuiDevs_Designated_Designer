@@ -20,7 +20,19 @@
                 <%= form.submit "Join Project", class: "projectButtonJoin" %>
             <% end %>
         <% else %>
-            <p style="display: none"></p>
+            <% if @project.designer_id == current_user.designer.id || @project.client.id == current_user.client.id %>
+                <% if @project.designer_id == current_user.designer.id %>
+                    <%= link_to 'Quit Project', remove_designer_path, method: 'put', class: "projectButtonQuit" %>
+                <% else %>
+                    <% if @project.designer_id.nil? %>
+                        <p style="display: none"></p>
+                    <% else %>
+                        <%= link_to 'Drop Designer', remove_designer_path, method: 'put', class: "projectButtonQuit" %>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <p style="display: none"></p>
+            <% end %>
         <% end %>
     </section>
 </section>
@@ -131,19 +143,7 @@
 
 <%# Remove Designer Button %>
 
-<% if @project.designer_id == current_user.designer.id || @project.client.id == current_user.client.id %>
-    <% if @project.designer_id == current_user.designer.id %>
-        <%= link_to 'Quit Project', remove_designer_path, method: 'put' %>
-    <% else %>
-        <% if @project.designer_id.nil? %>
-            <p style="display: none"></p>
-        <% else %>
-            <%= link_to 'Drop Designer', remove_designer_path, method: 'put' %>
-        <% end %>
-    <% end %>
-<% else %>
-    <p style="display: none"></p>
-<% end %>
+
 
 
 
