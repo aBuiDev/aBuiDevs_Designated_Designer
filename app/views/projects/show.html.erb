@@ -49,32 +49,24 @@
         <%# Project Statuses Output %>
         <%= render "shared/project_statuses" %>
 
-        <section class="projectStatusesContainer">
+        <%# Designer Controls %>
+        <section class="projectStatusesControllersSection">
+            <div class="projectStatusesControllerTitleContainer">
+                <h1 class="interfaceHeadings">Designer Controls:</h1>
+            </div>
+            <div class="projectStatusesControllerContainer">
                 <%= form_with model: @project, local: true do | form | %>
                     <div class="projectStatusDropDownSelectorElement">
-                        <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ], placeholder: "Select Status from Dropdown", class: "formInputField" %>
+                        <div class="projectStatusDropDown">
+                            <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ], placeholder: "Select Status from Dropdown" %>
                         </div>
-                        <%= form.submit "Update", class: "coverFormLoginButton" %>
+                        <div>
+                            <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
+                        </div>
                     </div>
-                <% end %>      
-        </section>
-
-        <h1 class="interfaceHeadings">Chat Interface:</h1>
-
-            <% @project.chatbox.messages.each do | message | %>
-                <div class="messageBox">
-                    <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
-                </div>
-            <% end %>
-
-        <h1>Designer Messaging Interface</h1>
-
-        <%= form_with url: message_create_designer_path, local: true do | form | %>
-            <%= form.label "Message:" %>
-            <%= form.text_field :message_content %>
-            <%= form.submit "Send" %>
-        <% end %>
-        
+                <% end %>  
+            </div>
+        </section> 
     </section>
 
     <section class="clientInterfaceSection">
@@ -125,25 +117,7 @@
                     <% end %>
                 </div>
             </section>
-
-            <h1 class="interfaceHeadings">Chat Interface:</h1>
-            
-            <% @project.chatbox.messages.each do | message | %>
-                <div class="messageBox">
-                    <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
-                </div>
-            <% end %>
-
-            <h1 class="interfaceHeadings">Client Chat Input:</h1>
-
-            <%= form_with url: message_create_client_path, local: true do | form | %>
-                <%= form.label "Message:" %>
-                <%= form.text_field :message_content %>
-                <%= form.submit "Send" %>
-            <% end %>
-
-            </section>
-
+        </section>
         <% elsif @project.designer_id == @project.client_id %>
             <p style="display: none"></p>
         <% elsif @project.designer_id.nil? %>
@@ -151,29 +125,61 @@
         <% elsif @project.client_id.nil? %>
             <p style="display: none"></p>
         <% end %>
-    </section>
+</section>
+</section>
 
-    <%# Remove Designer Button %>
+<%# Remove Designer Button %>
 
-    <% if @project.designer_id == current_user.designer.id || @project.client.id == current_user.client.id %>
-        <% if @project.designer_id == current_user.designer.id %>
-            <%= link_to 'Quit Project', remove_designer_path, method: 'put' %>
-        <% else %>
-            <% if @project.designer_id.nil? %>
-                <p style="display: none"></p>
-            <% else %>
-                <%= link_to 'Drop Designer', remove_designer_path, method: 'put' %>
-            <% end %>
-        <% end %>
+<% if @project.designer_id == current_user.designer.id || @project.client.id == current_user.client.id %>
+    <% if @project.designer_id == current_user.designer.id %>
+        <%= link_to 'Quit Project', remove_designer_path, method: 'put' %>
     <% else %>
-        <p style="display: none"></p>
+        <% if @project.designer_id.nil? %>
+            <p style="display: none"></p>
+        <% else %>
+            <%= link_to 'Drop Designer', remove_designer_path, method: 'put' %>
+        <% end %>
+    <% end %>
+<% else %>
+    <p style="display: none"></p>
+<% end %>
+
+
+
+
+
+<h1 class="interfaceHeadings">Chat Interface:</h1>
+
+<% @project.chatbox.messages.each do | message | %>
+    <div class="messageBox">
+        <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
+    </div>
+<% end %>
+
+<h1 class="interfaceHeadings">Client Chat Input:</h1>
+
+<%= form_with url: message_create_client_path, local: true do | form | %>
+    <%= form.label "Message:" %>
+    <%= form.text_field :message_content %>
+    <%= form.submit "Send" %>
+<% end %>
+
+
+
+
+<h1 class="interfaceHeadings">Chat Interface:</h1>
+
+    <% @project.chatbox.messages.each do | message | %>
+        <div class="messageBox">
+            <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
+        </div>
     <% end %>
 
+<h1>Designer Messaging Interface</h1>
 
-
-
-
-
-
-
+<%= form_with url: message_create_designer_path, local: true do | form | %>
+    <%= form.label "Message:" %>
+    <%= form.text_field :message_content %>
+    <%= form.submit "Send" %>
+<% end %>
 
