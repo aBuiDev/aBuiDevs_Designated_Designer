@@ -51,10 +51,10 @@
 
 <%# HUD Interface %>
 
+
+<% if @project.designer_id == current_user.designer.id && @project.client.id != current_user.client.id %>
 <section class="hudSection">
     <section class="InterfaceSection">
-        <% if @project.designer_id == current_user.designer.id && @project.client.id != current_user.client.id %>
-  
         <div class="projectStatusInterfaceOwnerContainer">
             <p class="projectStatusInterfaceDesignerTile"><%= @project.designer.user.username %>'s' Designer HUD<p>
         </div>
@@ -81,106 +81,125 @@
             </div>
         </section> 
     </section>
+</section>
 
-    <section class="clientInterfaceSection">
-        <% elsif @project.client_id == current_user.client.id %>
+<% elsif @project.client_id == current_user.client.id %>
+<section class="hudSection">
+    <section class="interfaceSection">
+        <div class="projectStatusInterfaceOwnerContainer">
+            <p class="projectStatusInterfaceDesignerTile"><%= @project.client.user.username %>'s' Client HUD<p>
+        </div>
 
-            <div class="projectStatusInterfaceOwnerContainer">
-                <p class="projectStatusInterfaceDesignerTile"><%= @project.client.user.username %>'s' Client HUD<p>
+        <%# Project Statuses Output %>
+        <%= render "shared/project_statuses" %>
+
+        <%# Project Statuses Controller %>
+        <section class="projectStatusesControllersSection">
+            <div class="projectStatusesControllerTitleContainer">
+                <h1 class="interfaceHeadings">Client Controls:</h1>
             </div>
-
-            <%# Project Statuses Output %>
-            <%= render "shared/project_statuses" %>
-
-            <%# Project Statuses Controller %>
-            <section class="projectStatusesControllersSection">
-                <div class="projectStatusesControllerTitleContainer">
-                    <h1 class="interfaceHeadings">Client Controls:</h1>
-                </div>
-                <div class="projectStatusesControllerContainer">
-                    <%= form_with model: @project, local: true do | form | %>
-                        <div class="projectStatusDropDownSelectorElement">
-                            <div class="projectStatusDropDown">
-                                <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
-                            </div>
-                            <div>
-                                <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
-                            </div>
+            <div class="projectStatusesControllerContainer">
+                <%= form_with model: @project, local: true do | form | %>
+                    <div class="projectStatusDropDownSelectorElement">
+                        <div class="projectStatusDropDown">
+                            <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
                         </div>
-                    <% end %>  
-                    <%= form_with model: @project, local: true do | form | %>
-                        <div class="projectStatusDropDownSelectorElement">
-                            <div class="projectStatusDropDown">
-                                <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
-                            </div>
-                            <div>
-                                <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
-                            </div>
+                        <div>
+                            <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
                         </div>
-                    <% end %>
-                    <%= form_with model: @project, local: true do | form | %>
-                        <div class="projectStatusDropDownSelectorElement">
-                            <div class="projectStatusDropDown">
-                                <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
-                            </div>
-                            <div>
-                                <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
-                            </div>
+                    </div>
+                <% end %>  
+                <%= form_with model: @project, local: true do | form | %>
+                    <div class="projectStatusDropDownSelectorElement">
+                        <div class="projectStatusDropDown">
+                            <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
                         </div>
-                    <% end %>
-                </div>
-            </section>
+                        <div>
+                            <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
+                        </div>
+                    </div>
+                <% end %>
+                <%= form_with model: @project, local: true do | form | %>
+                    <div class="projectStatusDropDownSelectorElement">
+                        <div class="projectStatusDropDown">
+                            <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
+                        </div>
+                        <div>
+                            <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
         </section>
-        <% elsif @project.designer_id == @project.client_id %>
-            <p style="display: none"></p>
-        <% elsif @project.designer_id.nil? %>
-            <p style="display: none"></p>
-        <% elsif @project.client_id.nil? %>
-            <p style="display: none"></p>
+    </section>
+</section>
+<% elsif @project.designer_id == @project.client_id %>
+    <p style="display: none"></p>
+<% elsif @project.designer_id.nil? %>
+    <p style="display: none"></p>
+<% elsif @project.client_id.nil? %>
+    <p style="display: none"></p>
+<% end %>
+
+
+<% if @project.designer_id == current_user.designer.id && @project.client.id != current_user.client.id %>
+
+<% elsif @project.client_id == current_user.client.id %>
+
+<% elsif @project.designer_id == @project.client_id %>
+    <p style="display: none"></p>
+<% elsif @project.designer_id.nil? %>
+    <p style="display: none"></p>
+<% elsif @project.client_id.nil? %>
+    <p style="display: none"></p>
+<% end %>
+
+
+
+<%# Client Chat Mechanism %>
+
+<section class="chatInterfaceSection">
+    <section class="chatInterfaceContainer">
+        <div class="chatInterfaceTitleContainer">
+            <h1 class="chatInterfaceHeading">Chat Interface:</h1>
+        </div>
+        <% @project.chatbox.messages.each do | message | %>
+            <div class="clientMessageContainer">
+                <p class="messageBox"><%= message[:from] %><%= message[:message_content] %></p>
+            </div>
+        <% end %>
+
+        <h1 class="interfaceHeadings">Client Chat Input:</h1>
+
+        <%= form_with url: message_create_client_path, local: true do | form | %>
+            <%= form.label "Message:" %>
+            <%= form.text_field :message_content %>
+            <%= form.submit "Send" %>
         <% end %>
     </section>
 </section>
 
-<%# Remove Designer Button %>
+<%# Designer Chat Mechanism %>
 
 
-
-
-
-
-
-<h1 class="interfaceHeadings">Chat Interface:</h1>
-
-<% @project.chatbox.messages.each do | message | %>
-    <div class="messageBox">
-        <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
-    </div>
-<% end %>
-
-<h1 class="interfaceHeadings">Client Chat Input:</h1>
-
-<%= form_with url: message_create_client_path, local: true do | form | %>
-    <%= form.label "Message:" %>
-    <%= form.text_field :message_content %>
-    <%= form.submit "Send" %>
-<% end %>
-
-
-
-
-<h1 class="interfaceHeadings">Chat Interface:</h1>
-
-    <% @project.chatbox.messages.each do | message | %>
-        <div class="messageBox">
-            <p class="messageBoxUserName"><%= message[:from] %></p><p><%= message[:message_content] %></p>
+<section class="chatInterfaceSection">
+    <section class="chatInterfaceContainer">
+        <div class="chatInterfaceTitleContainer">
+            <h1 class="chatInterfaceHeading">Chat Interface:</h1>
         </div>
-    <% end %>
+        <% @project.chatbox.messages.each do | message | %>
+            <div class="designerMessageContainer">
+                <p class="messageBox"><%= message[:from] %><%= message[:message_content] %></p>
+            </div>
+        <% end %>
 
-<h1>Designer Messaging Interface</h1>
+        <h1 class="interfaceHeadings">Client Chat Input:</h1>
 
-<%= form_with url: message_create_designer_path, local: true do | form | %>
-    <%= form.label "Message:" %>
-    <%= form.text_field :message_content %>
-    <%= form.submit "Send" %>
-<% end %>
+        <%= form_with url: message_create_designer_path, local: true do | form | %>
+            <%= form.label "Message:" %>
+            <%= form.text_field :message_content %>
+            <%= form.submit "Send" %>
+        <% end %>
+    </section>
+</section>
 
