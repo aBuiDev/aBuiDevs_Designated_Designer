@@ -2,24 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-
-
-.projectImageViewport {
-    width: 1000px;
-    height: 700px;
-    box-shadow: 2px 5px 10px #888888;
-    border: 1px solid rgb(255, 255, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.viewportTag {
-    margin: 0px 0px 15px 0px;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 15px;
-}
-
 .projectInformationContainer {
     background-color: #888888;
     width: 100%;
@@ -48,8 +30,6 @@
     margin: 0px 10px 0px 10px;
 }
 
-
-
 .projectBriefSectionTitle {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 25px;
@@ -68,11 +48,17 @@
 
 // Project | Show
 
-// Project | Show | Join Button
+// Project | Show | Viewport Section
+
+.viewportTag {
+    margin: 0px 0px 15px 0px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+}
 
 .projectImageViewportSection {
     width: 100%;
-    height: 800px;
+    height: 1000px;
     background-image: url("paper.jpg");
     background-position: center;
     background-size: cover;
@@ -84,22 +70,34 @@
     align-items: center;
 }
 
+.projectImageViewport {
+    width: 1000px;
+    height: 800px;
+    box-shadow: 2px 5px 10px #888888;
+    border: 1px solid rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .projectShowJoinViewportButtonSection {
     width: 100%;
 }
 
 .projectShowJoinButtonSectionSeparator {
     width: 100%;
-    height: 50px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+// Project | Show | Join Button
+
 .projectShowJoinButtonSectionButton {
     font-family: 'Nunito Sans', sans-serif;
     width: 80%;
-    height: 100px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,10 +109,11 @@
     box-shadow: 0px 0px 3px #252525;
 }
 
+// Project | Show | Project Brief Section
+
 .projectBriefSection {
     width: 100%;
-    height: 100px;
-    padding: 50px 0px 25px 0px;
+    padding: 50px 0px 50px 0px;
     display: flex;
     justify-content: space;
     align-items: center;
@@ -123,18 +122,197 @@
 
 
 
+// Project | Show | Project Status Section
+
+.projectStatusesContainer {
+    width: 60%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.projectStatusesSection {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.projectStatusElementContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.statusTitle {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+}
+
+.statusOutput {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 15px 0px 0px 0px;
+    color: rgb(0, 189, 164);
+    border: 2px solid rgb(0, 189, 164);
+    background-color:  rgba(0, 189, 189, 0.267);
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.designerStatusOutput {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 15px 0px 0px 0px;
+    color: rgb(0, 145, 189);
+    border: 2px solid rgb(68, 233, 255);
+    background-color:  rgba(0, 204, 255, 0.267);
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+// Project | Show | Project Controllers Section
+
+.projectStatusesControllersSection {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projectStatusesControllerTitleContainer {
+   
+}
+
+.projectStatusesControllerContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.projectStatusDropDownSelectorElement {
+    width: 400px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#project_payment_status {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    width: 300px;
+    height: 50px;
+    padding: 0px 25px 0px 25px;
+    margin: 50px 0px 25px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    border: 2px lightseagreen solid;
+}
+
+#project_payment_status:hover {
+    border: 2px rgb(112, 32, 178) solid;
+}
+
+#project_project_status {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    width: 300px;
+    height: 50px;
+    padding: 0px 25px 0px 25px;
+    margin: 50px 0px 25px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    border: 2px lightseagreen solid;
+}
+
+#project_project_status:hover {
+    border: 2px rgb(112, 32, 178) solid;
+}
+
+#project_client_status {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    width: 300px;
+    height: 50px;
+    padding: 0px 25px 0px 25px;
+    margin: 50px 0px 25px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    border: 2px lightseagreen solid;
+}
+
+#project_client_status:hover {
+    border: 2px rgb(112, 32, 178) solid;
+}
+
+#project_designer_status {
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    width: 300px;
+    height: 50px;
+    padding: 0px 25px 0px 25px;
+    margin: 50px 0px 25px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    border: 2px lightseagreen solid;
+}
+
+#project_designer_status:hover {
+    border: 2px rgb(112, 32, 178) solid;
+}
+
+.projectStatusesSubmitButton {
+	font-family: 'Nunito Sans', sans-serif;
+	color: rgb(255, 255, 255);
+	width: 150px;
+	height: 30px;
+	background: none;
+	border: 1px solid rgb(255, 255, 255);
+}
+
+.projectStatusesSubmitButton:hover {
+	color: rgb(153, 0, 255);
+	border: 1px solid rgb(153, 0, 255);
+}
 
 
 
 
-
-
-
-
-.HUDSection {
+.hudSection {
     color: white;
     width: 100%;
-    height: auto;
+    height: 2000px;
     background-image: url("hud.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -186,67 +364,7 @@
     margin: 0px 0px 25px 0px;
 }
 
-.projectStatusesSection {
-    width: 100%;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.projectStatusesContainer {
-    width: 60%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.projectStatusElementContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.statusTitle {
-    font-family: 'Nunito Sans', sans-serif;
-    color: white;
-}
-
-.statusOutput {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 20px;
-    line-height: 1.5;
-    margin: 15px 0px 0px 0px;
-    color: rgb(0, 189, 164);
-    border: 2px solid rgb(0, 189, 164);
-    background-color:  rgba(0, 189, 189, 0.267);
-    width: 200px;
-    height: 100px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.designerStatusOutput {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 20px;
-    line-height: 1.5;
-    margin: 15px 0px 0px 0px;
-    color: rgb(0, 145, 189);
-    border: 2px solid rgb(68, 233, 255);
-    background-color:  rgba(0, 204, 255, 0.267);
-    width: 200px;
-    height: 100px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .userControlsInterfaceSection {
     width: 500px;

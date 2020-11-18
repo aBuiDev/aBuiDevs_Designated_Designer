@@ -1,11 +1,24 @@
-<p>Payment Status:</p>
-<p><%= @project[:payment_status] %></p>
+<div class="projectStatusInterfaceContainer">
+    <p class="projectStatusInterfaceTitle">Project Status Interface:</p>
+</div>
 
-<p>Designer Status:</p>
-<p><%= @project[:designer_status] %></p>
-
-<p>Client Status:</p>
-<p><%= @project[:client_status] %></p>
-
-<p>Project Status:</p>
-<p><%= @project[:project_status] %></p>
+<section class="projectStatusesSection">
+    <div class="projectStatusesContainer">
+        <div class="projectStatusElementContainer">
+            <p class="statusTitle">Payment Status:</p>
+            <p class="statusOutput"><%= @project[:payment_status] %></p>
+        </div>
+        <div class="projectStatusElementContainer">
+            <p class="statusTitle">Designer Status:</p>
+            <p class="designerStatusOutput"><%= @project[:designer_status] %></p>
+        </div>
+        <div class="projectStatusElementContainer">
+            <p class="statusTitle">Client Status:</p>
+            <p class="statusOutput"><%= @project[:client_status] %></p>
+        </div>
+        <div class="projectStatusElementContainer">
+            <p class="statusTitle">Project Status:</p>
+            <p class="statusOutput"><%= @project[:project_status] %></p>
+        </div>
+    </div>
+</section>

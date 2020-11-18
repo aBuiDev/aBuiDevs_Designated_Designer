@@ -11,19 +11,8 @@
 
 <%# Project Viewport Section %>
 <section class="projectImageViewportSection">
-    <div class="projectImageViewport" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
-        
-        <%# Join Project Button %>
-        <div class="projectShowJoinViewportButtonSection">
-            <% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
-                <%= form_with model: @project, local: true do | form | %>
-                    <%= form.submit "Project Avaliable", class: "projectShowJoinButtonSectionButton" %>
-                <% end %>
-            <% else %>
-                <p style="display: none"></p>
-            <% end %>
-        </div>
-    </div>
+        <section class="projectImageViewport" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    </section>
     <section class="projectShowJoinButtonSectionSeparator">
         <% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
             <%= form_with model: @project, local: true do | form | %>
@@ -35,21 +24,12 @@
     </section>
 </section>
 
+<%# Project Design Brief Section %>
 <section class="projectBriefSection">
     <p class="projectBriefSectionTitle">Project Design Brief</p>
     <div class="projectBriefSectionContentContainer">
         <p class="projectBriefContent"><%= @project[:description] %></p>
     </div>
-</section>
-
-<section class="projectShowJoinButtonSectionSeparator">
-    <% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
-        <%= form_with model: @project, local: true do | form | %>
-            <%= form.submit "Join Project", class: "projectShowJoinButtonSectionButton" %>
-        <% end %>
-    <% else %>
-        <p style="display: none"></p>
-    <% end %>
 </section>
 
 
@@ -58,41 +38,20 @@
 
 <%# HUD Interface %>
 
-<section class="HUDSection">
+<section class="hudSection">
     <section class="InterfaceSection">
         <% if @project.designer_id == current_user.designer.id && @project.client.id != current_user.client.id %>
   
         <div class="projectStatusInterfaceOwnerContainer">
             <p class="projectStatusInterfaceDesignerTile"><%= @project.designer.user.username %>'s' Designer HUD<p>
         </div>
-        <div class="projectStatusInterfaceContainer">
-            <p class="projectStatusInterfaceTitle">Project Status Interface:</p>
-        </div>
-
-        <section class="projectStatusesSection">
-            <div class="projectStatusesContainer">
-                <div class="projectStatusElementContainer">
-                    <p class="statusTitle">Payment Status:</p>
-                    <p class="statusOutput"><%= @project[:payment_status] %></p>
-                </div>
-                <div class="projectStatusElementContainer">
-                    <p class="statusTitle">Designer Status:</p>
-                    <p class="designerStatusOutput"><%= @project[:designer_status] %></p>
-                </div>
-                <div class="projectStatusElementContainer">
-                    <p class="statusTitle">Client Status:</p>
-                    <p class="statusOutput"><%= @project[:client_status] %></p>
-                </div>
-                <div class="projectStatusElementContainer">
-                    <p class="statusTitle">Project Status:</p>
-                    <p class="statusOutput"><%= @project[:project_status] %></p>
-                </div>
-            </div>
-        </section>
+        
+        <%# Project Statuses Output %>
+        <%= render "shared/project_statuses" %>
 
         <section class="projectStatusesContainer">
                 <%= form_with model: @project, local: true do | form | %>
-                    <div class="userControlsFormInputFieldContainer">
+                    <div class="projectStatusDropDownSelectorElement">
                         <%= form.select :designer_status, [ "Planning", "Awaiting Draft Approval", "Design Complete" ], placeholder: "Select Status from Dropdown", class: "formInputField" %>
                         </div>
                         <%= form.submit "Update", class: "coverFormLoginButton" %>
@@ -120,68 +79,51 @@
 
     <section class="clientInterfaceSection">
         <% elsif @project.client_id == current_user.client.id %>
-            
+
             <div class="projectStatusInterfaceOwnerContainer">
                 <p class="projectStatusInterfaceDesignerTile"><%= @project.client.user.username %>'s' Client HUD<p>
             </div>
-            <div class="projectStatusInterfaceContainer">
-                <p class="projectStatusInterfaceTitle">Project Status Interface:</p>
-            </div>
-            
-            <section class="projectStatusesSection">
-                <div class="projectStatusesContainer">
-                    <div class="projectStatusElementContainer">
-                        <p class="statusTitle">Payment Status:</p>
-                        <p class="statusOutput"><%= @project[:payment_status] %></p>
-                    </div>
-                    <div class="projectStatusElementContainer">
-                        <p class="statusTitle">Designer Status:</p>
-                        <p class="designerStatusOutput"><%= @project[:designer_status] %></p>
-                    </div>
-                    <div class="projectStatusElementContainer">
-                        <p class="statusTitle">Client Status:</p>
-                        <p class="statusOutput"><%= @project[:client_status] %></p>
-                    </div>
-                    <div class="projectStatusElementContainer">
-                        <p class="statusTitle">Project Status:</p>
-                        <p class="statusOutput"><%= @project[:project_status] %></p>
-                    </div>
-                </div>
-            </section>
 
-            <h1 class="interfaceHeadings">Client Controls:</h1>
+            <%# Project Statuses Output %>
+            <%= render "shared/project_statuses" %>
 
-            <section class="projectStatusesContainer">
-            <%= form_with model: @project, local: true do | form | %>
-                <div class="userControlsFormInputFieldContainer">
-                    <div class="updateStatusSelectorElement">
-                        <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
-                    </div>
-                    <div>
-                        <%= form.submit "Update", class: "coverFormLoginButton" %>
-                    </div>
+            <%# Project Statuses Controller %>
+            <section class="projectStatusesControllersSection">
+                <div class="projectStatusesControllerTitleContainer">
+                    <h1 class="interfaceHeadings">Client Controls:</h1>
                 </div>
-            <% end %>  
-            <%= form_with model: @project, local: true do | form | %>
-                <div class="userControlsFormInputFieldContainer">
-                    <div class="updateStatusSelectorElement">
-                        <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
-                    </div>
-                    <div>
-                        <%= form.submit "Update", class: "coverFormLoginButton" %>
-                    </div>
+                <div class="projectStatusesControllerContainer">
+                    <%= form_with model: @project, local: true do | form | %>
+                        <div class="projectStatusDropDownSelectorElement">
+                            <div class="projectStatusDropDown">
+                                <%= form.select :payment_status, [ "Pending Payment", "Payment Complete" ] %>
+                            </div>
+                            <div>
+                                <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
+                            </div>
+                        </div>
+                    <% end %>  
+                    <%= form_with model: @project, local: true do | form | %>
+                        <div class="projectStatusDropDownSelectorElement">
+                            <div class="projectStatusDropDown">
+                                <%= form.select :client_status, [ "Reviewing Draft", "Reviewing Final Design", "Design Approved" ] %>
+                            </div>
+                            <div>
+                                <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
+                            </div>
+                        </div>
+                    <% end %>
+                    <%= form_with model: @project, local: true do | form | %>
+                        <div class="projectStatusDropDownSelectorElement">
+                            <div class="projectStatusDropDown">
+                                <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
+                            </div>
+                            <div>
+                                <%= form.submit "Update", class: "projectStatusesSubmitButton" %>
+                            </div>
+                        </div>
+                    <% end %>
                 </div>
-            <% end %>
-            <%= form_with model: @project, local: true do | form | %>
-                <div class="userControlsFormInputFieldContainer">
-                    <div class="updateStatusSelectorElement">
-                        <%= form.select :project_status, [ "Draft", "With Designer", "Pending Approval", "Project Complete" ] %>
-                    </div>
-                    <div>
-                        <%= form.submit "Update", class: "coverFormLoginButton" %>
-                    </div>
-                </div>
-            <% end %>
             </section>
 
             <h1 class="interfaceHeadings">Chat Interface:</h1>
