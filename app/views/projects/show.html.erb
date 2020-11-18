@@ -9,9 +9,30 @@
     </div>
 </section>
 
+<%# Project Viewport Section %>
 <section class="projectImageViewportSection">
     <div class="projectImageViewport" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+        
+        <%# Join Project Button %>
+        <div class="projectShowJoinViewportButtonSection">
+            <% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
+                <%= form_with model: @project, local: true do | form | %>
+                    <%= form.submit "Project Avaliable", class: "projectShowJoinButtonSectionButton" %>
+                <% end %>
+            <% else %>
+                <p style="display: none"></p>
+            <% end %>
+        </div>
     </div>
+    <section class="projectShowJoinButtonSectionSeparator">
+        <% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
+            <%= form_with model: @project, local: true do | form | %>
+                <%= form.submit "Join Project", class: "projectShowJoinButtonSectionButton" %>
+            <% end %>
+        <% else %>
+            <p style="display: none"></p>
+        <% end %>
+    </section>
 </section>
 
 <section class="projectBriefSection">
@@ -21,17 +42,17 @@
     </div>
 </section>
 
-
-
-<%# Join Project Button %>
-
-<% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
-    <%= form_with model: @project, local: true do | form | %>
-        <%= form.submit "Join Project" %>
+<section class="projectShowJoinButtonSectionSeparator">
+    <% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
+        <%= form_with model: @project, local: true do | form | %>
+            <%= form.submit "Join Project", class: "projectShowJoinButtonSectionButton" %>
+        <% end %>
+    <% else %>
+        <p style="display: none"></p>
     <% end %>
-<% else %>
-    <p style="display: none"></p>
-<% end %>
+</section>
+
+
 
 
 
