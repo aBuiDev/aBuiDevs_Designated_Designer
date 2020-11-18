@@ -13,10 +13,11 @@
 <section class="projectImageViewportSection">
         <section class="projectImageViewport" style="background-image: url(<%= rails_blob_path(@project.picture, disposition: "attachment", only_path: true) %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
     </section>
-    <section class="projectShowJoinButtonSectionSeparator">
+    <%# Join, Remove Designer or Quit Project Button %>
+    <section class="projectButtonSection">
         <% if @project.designer_id.nil? && @project.client.id != current_user.client.id %>
             <%= form_with model: @project, local: true do | form | %>
-                <%= form.submit "Join Project", class: "projectShowJoinButtonSectionButton" %>
+                <%= form.submit "Join Project", class: "projectButtonJoin" %>
             <% end %>
         <% else %>
             <p style="display: none"></p>
@@ -125,7 +126,7 @@
         <% elsif @project.client_id.nil? %>
             <p style="display: none"></p>
         <% end %>
-</section>
+    </section>
 </section>
 
 <%# Remove Designer Button %>
