@@ -3,6 +3,10 @@
 
 <br>
 
+![img](./app/assets/images/artndesign.jpg)
+
+<br>
+
 ## **R7** | Identification of the problem you are trying to solve by building this particular marketplace app:
 ####
 
