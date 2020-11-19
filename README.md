@@ -213,7 +213,13 @@ Designated Designer is a middle management two way market web application betwee
 
 #
 
-<>
+- Designated Designer is an interactive web application built using Ruby and Ruby on Rails.
+- Designated Designer's backend is handled using Ruby on Rails utilising a Postgresql database to access data to be outputted onto Designated Designer's front end, specifically the interactive user interface.
+- Designated Designer has an in-built messaging system that allows users to communicate one with another as a form of collaboration to get the job done.
+- Designated Designer achieves different display outputs to different screens with the use of complicated conditionals that use data to determine what element of a website a user can see dependant on their ids. This is done through data manipulation and the understanding of the associations between the different models that make up Designated Designer's back end.
+- Users are able to upload images which are stored on AWS S3 cloud storage.
+- Authorisation is achieved with the help of the Devise gem which initially generates a User model, which forms the basis of association for many of the other models present in the database, including the projects model.
+- Elements of the user interface can be changed using forms which are displayed as drop downs and a single button which allows the user to literally interact with another user.
 
 <br>
 
