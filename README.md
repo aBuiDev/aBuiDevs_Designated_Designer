@@ -12,8 +12,12 @@ There is a huge problem in the design industry where the working environment of 
 
 This market place will be implemented as "designer focused" and help designers to focus on their passion of design with more "design" wins as completed projects. Projects will be delivered through an interactive portal where designers can choose what project they want to work on and chat in real time with the client via a built-in messaging interface. No physical interaction or contact will be required to get the job done as the client and designer both have to work together to get the final design approved. This level of collaboration is something missing in the professional designers are often left with obscure briefs to do everything themselves and return a semi polished draft for review. Often, designers are left to chase up clients to review work for a project they have created. Through this two work marketplace as a service, projects don't move forward unless the other party does their part.
 
+<br>
+
 #
 
+<br>
+<br>
 <br>
 
 ## **R8** | Why is it a problem that needs solving?:
@@ -30,6 +34,9 @@ Designated Designer is a middle management two way market web application betwee
 #
 
 <br>
+<br>
+<br>
+
 
 ## **R9** | A link (URL) to your deployed app (i.e. website):
 ####
@@ -39,6 +46,9 @@ Designated Designer is a middle management two way market web application betwee
 #
 
 <br>
+<br>
+<br>
+
 
 ## **R10** | A link to your GitHub repository (repo):
 ####
@@ -48,18 +58,23 @@ Designated Designer is a middle management two way market web application betwee
 #
 
 <br>
+<br>
+<br>
+
 
 ## **R11** | Description of your marketplace app (website), including:
 
 <br>
 
 - **Purpose:**
+  - The purpose of Designated Designer is to create a designer focused two way market selling the services of designers in a comfortable and protected environment. Designers won't need to have to go out, sell themselves and find clients, instead, clients who understand the service can register online and create projects where designers and log in, find a project they like and start designing for that client. An HUD or interface that is unique to each user is utilised to streamline the design process. The design process also requires proper collaboration from the client - something that is often missing within a professional design environment, especially if the designer as the sole designer within a small company.
 
 <br>
 
 - **Functionality / features:**
 
-<br>
+  - Interactive Interface that allows users to interact with one another, i.e. updating project statuses or payment statuses. These statuses are then viewable to the other user who has a different set of interface controls depending on if they're a designer or a client.
+  - In-built chat system that allows users to communicate with one another during project collaboration to help one another get the job done. 
 
 - **Sitemap:**
 
@@ -69,34 +84,53 @@ Designated Designer is a middle management two way market web application betwee
 
 <br>
 
+![img](./public/home.png)
+
+<br>
+
+![img](./public/foyer.png)
+
+<br>
+
+![img](./public/create_project.png)
+
+<br>
+
+![img](./public/chat.png)
+
+<br>
+
+![img](./public/project_landing.png)
+
+<br>
+
+![img](./public/client_controls.png)
+
+<br>
+
+![img](./public/client_controls_status_update.png)
+
+<br>
+
 - **Target audience:**
 
     Target audience includes:
-    - Gamers
-    - PC Enthusiasts
-    - Hobbyist PC Builders
-    - Computer Modders
-    - Savvy Consumers
-    - Consumer looking for a good deal
-    - Consumer looking for computer parts
+    - Designers
+    - Clients
+    - Creatives
+    - Artists
+    - Teachers
+    - Employers
 
 <br>
 
 - **Tech stack (e.g. html, css, deployment platform, etc):**
-
-<br>
-
-**Front-end Development:** HTML5, CSS3, SCSS, Embedded Ruby.
-
-**Back-end Development:** Ruby Version 2.7.1, Ruby on Rails Version 6.0.3.
-
-**Database:** Postgresql Database Management System
-
-**Deployment:** Heroku
-
-**Additional:** Devise and AWS S3.
-
-**Development, Planning and Version Control:** Gitbash, Terminal, Github, VS Code, Trello, macOS and Windows 10.
+  - **Front-end Development:** HTML5, CSS3, SCSS, Embedded Ruby.
+  - **Back-end Development:** Ruby Version 2.7.1, Ruby on Rails Version 6.0.3.
+  - **Database:** Postgresql Database Management System
+  - **Deployment:** Heroku
+  - **Additional:** Devise and AWS S3.
+  - **Development, Planning and Version Control:** Gitbash, Terminal, Github, VS Code, Trello, macOS and Windows 10.
 
 <br>
 
@@ -104,6 +138,8 @@ Designated Designer is a middle management two way market web application betwee
 
 #
 
+<br>
+<br>
 <br>
 
 ## **R12** | User stories for your app:
@@ -180,12 +216,15 @@ Designated Designer is a middle management two way market web application betwee
 ## **R16** | Detail any third party services that your app will use:
 ####
 
-* Devise
+* Devise:
   - Devise was implemented for user management and authorisation. Devise was used to generate a user model that aided me in writing conditionals using ```current_user``` and ```user_logged_in?``` to output different elements that can be used by the current user and their client/designer association.
 
-AWS S3: AWS S3 is used for image uploading and storage for listings in the app. These images are then stored in the cloud, removing the need for in app storage.
+* AWS S3: 
+  - AWS S3 was setup and implemented for image uploading purposed when deploying onto Heroku. Image uploading is an important feature of Designated Designer as it allows a client to upload a reference image of what they are after from the designer, making the designers job easier as they will have a better understanding of what the client wants.
+  - Image uploading also allows 
 
-Bootstrap: Bootstrap is a framework used for front end styling. It uses a combination of CSS and Javascript to provide easy styling functions in the embedded Ruby files.
+* Bootstrap: 
+  - Bootstrap is a framework used for front end styling. It uses a combination of CSS and Javascript to provide easy styling functions in the embedded Ruby files.
 
 #
 
