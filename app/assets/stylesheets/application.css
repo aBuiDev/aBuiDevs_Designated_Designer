@@ -178,7 +178,7 @@ button:focus {
 }
 
 ::placeholder {
-	color: rgba(108, 226, 255, 0.623);
+	color: rgb(0, 204, 255);
   }
 
 .frontCoverFormSection {

@@ -143,9 +143,57 @@
 
 
 <% if @project.designer_id == current_user.designer.id && @project.client.id != current_user.client.id %>
+<%# Client Chat Mechanism %>
+<section class="chatInterfaceSection">
+    <section class="chatInterfaceContainer">
+        <div class="chatInterfaceTitleContainer">
+            <h1 class="chatInterfaceHeading">Chat Interface:</h1>
+        </div>
+        <% @project.chatbox.messages.each do | message | %>
+            <div class="clientMessageContainer">
+                <p class="messageSentBy"><%= message[:from] %>:</p>
+                <p class="messageBox"><%= message[:message_content] %></p>
+            </div>
+        <% end %>
 
+        <%= form_with url: message_create_designer_path, local: true do | form | %>
+            <section class="messageInputSection">
+                <div class="messageInputContainer">
+                    <div class="messageInputElement">
+                        <%= form.text_area :message_content, placeholder: "Type your message here...", class: "messageInputTextArea"  %>
+                    </div>
+                    <%= form.submit "Send", class: "messageSubmitButton" %>
+                </div>
+            </section>
+        <% end %>
+    </section>
+</section>
 <% elsif @project.client_id == current_user.client.id %>
+<%# Designer Chat Mechanism %>
+<section class="chatInterfaceSection">
+    <section class="chatInterfaceContainer">
+        <div class="chatInterfaceTitleContainer">
+            <h1 class="chatInterfaceHeading">Chat Interface:</h1>
+        </div>
+        <% @project.chatbox.messages.each do | message | %>
+            <div class="designerMessageContainer">
+                <p class="messageSentBy"><%= message[:from] %>:</p>
+                <p class="messageBox"><%= message[:message_content] %></p>
+            </div>
+        <% end %>
 
+        <%= form_with url: message_create_client_path, local: true do | form | %>
+            <section class="messageInputSection">
+                <div class="messageInputContainer">
+                    <div class="messageInputElement">
+                        <%= form.text_area :message_content, placeholder: "Type your message here...", class: "messageInputTextArea"  %>
+                    </div>
+                    <%= form.submit "Send", class: "messageSubmitButton" %>
+                </div>
+            </section>
+        <% end %>
+    </section>
+</section>
 <% elsif @project.designer_id == @project.client_id %>
     <p style="display: none"></p>
 <% elsif @project.designer_id.nil? %>
@@ -156,50 +204,7 @@
 
 
 
-<%# Client Chat Mechanism %>
-
-<section class="chatInterfaceSection">
-    <section class="chatInterfaceContainer">
-        <div class="chatInterfaceTitleContainer">
-            <h1 class="chatInterfaceHeading">Chat Interface:</h1>
-        </div>
-        <% @project.chatbox.messages.each do | message | %>
-            <div class="clientMessageContainer">
-                <p class="messageBox"><%= message[:from] %><%= message[:message_content] %></p>
-            </div>
-        <% end %>
-
-        <h1 class="interfaceHeadings">Client Chat Input:</h1>
-
-        <%= form_with url: message_create_client_path, local: true do | form | %>
-            <%= form.label "Message:" %>
-            <%= form.text_field :message_content %>
-            <%= form.submit "Send" %>
-        <% end %>
-    </section>
-</section>
-
-<%# Designer Chat Mechanism %>
 
 
-<section class="chatInterfaceSection">
-    <section class="chatInterfaceContainer">
-        <div class="chatInterfaceTitleContainer">
-            <h1 class="chatInterfaceHeading">Chat Interface:</h1>
-        </div>
-        <% @project.chatbox.messages.each do | message | %>
-            <div class="designerMessageContainer">
-                <p class="messageBox"><%= message[:from] %><%= message[:message_content] %></p>
-            </div>
-        <% end %>
 
-        <h1 class="interfaceHeadings">Client Chat Input:</h1>
-
-        <%= form_with url: message_create_designer_path, local: true do | form | %>
-            <%= form.label "Message:" %>
-            <%= form.text_field :message_content %>
-            <%= form.submit "Send" %>
-        <% end %>
-    </section>
-</section>
 

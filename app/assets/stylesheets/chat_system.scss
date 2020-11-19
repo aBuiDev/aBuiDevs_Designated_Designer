@@ -30,6 +30,8 @@
     margin: 15px 0px 15px 0px;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 .designerMessageContainer {
@@ -37,10 +39,20 @@
     margin: 15px 0px 15px 0px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.messageSentBy {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+    margin: 5px 0px 5px 15px;
 }
 
 .messageBox {
+    width: 50%;
     padding: 15px 15px 15px 15px;
+    line-height: 1.5;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 15px;
     color: white;
@@ -50,3 +62,47 @@
     justify-content: center;
     align-items: center;
 }
+
+.messageInputSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messageInputContainer {
+    width: 600px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.messageSubmitButton {
+	font-family: 'Nunito Sans', sans-serif;
+	color: rgb(0, 0, 0);
+	width: 150px;
+	height: 30px;
+	background: none;
+	border: 1px solid rgb(0, 0, 0);
+}
+
+.messageSubmitButton:hover {
+	color: rgb(153, 0, 255);
+	border: 1px solid rgb(153, 0, 255);
+}
+
+.messageInputElement {
+    width: 100%;
+}
+
+.messageInputTextArea {
+    width: 100%;
+    padding: 25px 10px 25px 10px;
+    margin: 10px 0px 10px 0px;
+    font-family: 'Nunito Sans', sans-serif;
+	color: rgb(0, 132, 255);
+}
+
