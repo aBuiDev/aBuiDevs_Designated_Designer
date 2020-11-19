@@ -1,3 +1,27 @@
-<% @projects.each do | project | %>
-    <%= project[:title ]%>
-<% end %>
+<%= render "shared/navbar"%>
+
+<section class="projectsContainer">
+    <% @projects.each do | project | %>
+
+        <div class="projectCard">
+            <div class="projectCardImage" style="background-image: url(<%= rails_blob_path(project.picture, disposition: "attachment", only_path: true) %>); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+            <div class="projectCardInfoContainer">
+                <div class="projectCardTitle">
+                    <%= project[:title ]%>
+                </div>
+                <div class="projectCardClient">
+                    <p class="projectCardClientTitle">Client:</p>
+                    <p class="projectCardClientUsername"><%= project.client.user.username %></p>
+                </div>
+                <div class="projectCardButton">
+                    <%= link_to 'View Project', project, style: "text-decoration: none; color: black" %>
+                </div>
+            </div>
+        </div>
+    
+
+
+
+
+    <% end %>
+</section>

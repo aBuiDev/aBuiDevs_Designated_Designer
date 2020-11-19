@@ -1,0 +1,59 @@
+.projectsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 50px 0px 50px 0px;
+}
+
+.projectCard {
+    margin: 25px 20px 25px 20px;
+    width: 550px;
+    border: 1px solid rgb(179, 179, 179);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.projectCardImage {
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgb(61, 61, 61);
+}
+
+.projectCardInfoContainer {
+    width: 280px;
+    height: 250px;
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.projectCardTitle {
+    font-family: 'Nunito Sans', sans-serif;
+	font-size: 20px;
+}
+
+.projectCardClient {
+    font-family: 'Nunito Sans', sans-serif;
+	font-size: 15px;
+}
+
+.projectCardClientUsername {
+    margin: 10px 0px 0px 0px;
+    font-family: 'Nunito Sans', sans-serif;
+	font-size: 20px;
+}
+
+.projectCardButton {
+    width: 150px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+}
