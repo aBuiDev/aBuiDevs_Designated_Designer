@@ -5,18 +5,18 @@
           <h1 class="designatedDesignerTitle">Designated Designer</h1>
        </div>
        <% if user_signed_in? %>
-       <div>
-           <p class="frontCoverUserDetails">Logged in as: <%= current_user.username %> | Account ID: <%= current_user.id %></p>
-       </div>
+            <div>
+                <p class="frontCoverUserDetails">Logged in as: <%= current_user.username %> | Account ID: <%= current_user.id %></p>
+            </div>
        <% end %>
-        <div class="navBarLinksSection">
-              <% if user_signed_in? %>
-                  <%= link_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
-                  <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
-                  <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
-              <% else %>
-                  <%= link_to "back", home_path, class: "navLinkButtons" %>
-              <% end %>
-       </div>
+            <div class="navBarLinksSection">
+                <% if user_signed_in? %>
+                    <%= link_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
+                    <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
+                    <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
+                <% else %>
+                    <%= link_to "back", home_path, class: "navLinkButtons" %>
+                <% end %>
+        </div>
     </section>
 </section>

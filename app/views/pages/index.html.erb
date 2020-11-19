@@ -15,7 +15,9 @@
                   <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
                   <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
               <% else %>
-                  <%= link_to "Register", new_user_registration_path, class: "navLinkButtons" %>
+                  <div class="navBarRegistrationLinkContainer">
+                      <%= link_to "Register", new_user_registration_path, class: "navLinkButtons" %>
+                  </div>
               <% end %>
        </div>
     </section>
@@ -40,13 +42,13 @@
             <div class="formInputFieldRememberContainer">
                 <% if devise_mapping.rememberable? %>
                     <div class="coverFormCheckboxSection">
-                        <%= f.check_box :remember_me, class: "rememberMeCheckbox", id: "testID"%>
+                        <%= f.check_box :remember_me, class: "rememberMeCheckbox"%>
                         <%= f.label :remember_me, class: "rememberMeLabel" %>
                     </div>    
                 <% end %>
-                    <div class="coverFormLoginButtonSection">
-                        <%= f.submit "Log in", class: "coverFormLoginButton" %>
-                    </div>
+                <div class="coverFormLoginButtonSection">
+                    <%= f.submit "Log in", class: "coverFormLoginButton" %>
+                </div>
             </div>
           <% end %>
       </section>
