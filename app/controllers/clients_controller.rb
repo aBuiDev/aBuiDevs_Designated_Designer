@@ -9,6 +9,7 @@ class ClientsController < ApplicationController
         @client = Client.new
     end
 
+    # Creation of Client & Designer by Association with User Model
     def create
         if current_user.client.nil?
             @client = Client.new(client_params)

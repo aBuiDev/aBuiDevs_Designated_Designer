@@ -21,6 +21,6 @@ class PagesController < ApplicationController
 
     # Controller Content
     def index
-        
+        @projects = Project.all
     end
 end

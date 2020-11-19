@@ -9,11 +9,13 @@ class ProjectsController < ApplicationController
         @projects = Project.all
     end
 
+    # Create a new a project as well as initialises a chatbox
     def new
         @project = Project.new
         @project_chatbox = Chatbox.new
     end
 
+    # Upon creation of a project, a chatbox is also created and associated with the client who created the project as well as an association with the project
     def create
         @project = Project.new(project_params)
         @project.client_id = current_user.client.id
@@ -75,6 +77,7 @@ class ProjectsController < ApplicationController
 
     # Messaging System
 
+    # Designer Messaging Module
     def message_create_designer
         @project = Project.find params[:id]
         @project_chatbox = @project.chatbox
@@ -87,6 +90,7 @@ class ProjectsController < ApplicationController
         end
     end
 
+    # Client Messaging Module
     def message_create_client
         @project = Project.find params[:id]
         @project_chatbox = @project.chatbox
@@ -98,6 +102,8 @@ class ProjectsController < ApplicationController
             redirect_to project_path(@project)
         end
     end
+
+    # ================================================================
 
     private
 
