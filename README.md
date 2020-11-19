@@ -84,6 +84,11 @@ Designated Designer is a middle management two way market web application betwee
 
 <br>
 
+![img](./public/sitemap.svg)
+
+<br>
+<br>
+
 - **Screenshots:**
 
 <br>
@@ -137,8 +142,6 @@ Designated Designer is a middle management two way market web application betwee
   - **Development, Planning and Version Control:** Gitbash, Terminal, Github, VS Code, Trello, macOS and Windows 10.
 
 <br>
-
-####
 
 #
 
@@ -194,6 +197,20 @@ Designated Designer is a middle management two way market web application betwee
 
 ## **R13** | Wireframes for your app:
 ####
+
+<br>
+
+![img](./public/wireframe1.png)
+
+<br>
+
+![img](./public/wireframe2.png)
+
+<br>
+
+![img](./public/wireframe3.png)
+
+<br>
 
 #
 
