@@ -168,31 +168,35 @@ Designated Designer is a middle management two way market web application betwee
 
 - As a client, I want to switch between being a client or designer seamlessly.
 - As a client, I want to easily log into my account using my email, username or mobile as well as a password.
-- As a client, I do not want to be distinguished as either a buyer or seller but as both.
+- As a client, I do not want to be distinguished as a client or designer but as both.
 - As a client, I want a streamlined and easy client and designer interaction experience.
 - As a client, I want to know that I can trust other users who are both designers or clients.
 - As a client, I want to easily communicate with a designer of my project.
 - As a client, I want to easily communicate with a designer through an interactive and intuitive interface.
-- As a client, I want to easily create a project and understand that every project needs a proper description
+- As a client, I want to easily create a project and understand that every project needs a proper description.
+- As a client, I want to easily remove a designer from a project if I feel they are not the right fit.
 
 <br>
 
 **DESIGNER:** <br>
 
 - As a designer, I want to switch between being a buyer or seller seamlessly.
-- As a seller, I want to easily log into my account using my email, username or mobile as well as a password.
-- As a seller, I want do not want to be distinguished as either a buyer or seller but as both.
-- As a seller, I want to be able to let other users know if I am willing to trade the item I have up for sale or not.
-- As a seller, I want to be able to easily delete or edit my listing.
-- As a seller, I want a streamlined and easy selling experience.
-- As a seller, I want to know that I can trust other users.
-- As a seller, I want to easily communicate with a listings seller.
-- As a seller, I want to be able to easily view my transaction history.
+- As a designer, I want to easily log into my account using my email, username or mobile as well as a password.
+- As a designer, I do not want to be distinguished as client or designer but as both.
+- As a designer, I want a streamlined and easy client and designer interaction experience.
+- As a designer, I want to know that I can trust other users who are both designers or clients.
+- As a designer, I want to easily communicate with a client about the project they require.
+- As a designer, I want to easily communicate with a client through an interactive and intuitive interface.
+- As a designer, I want to easily view a project and understand the requirements because the client was required to put down a detailed breif.
+- As a designer, I want to easily exit from a project if I don't feel it is right for me.
+- As a designer, I want to easily join a project and start collaborating with the client.
 
 <br>
 
 #
 
+<br>
+<br>
 <br>
 
 ## **R13** | Wireframes for your app:
@@ -215,6 +219,8 @@ Designated Designer is a middle management two way market web application betwee
 #
 
 <br>
+<br>
+<br>
 
 ## **R14** | An ERD for your app:
 ####
@@ -228,7 +234,7 @@ Designated Designer is a middle management two way market web application betwee
 ## **R15** | Explain the different high-level components (abstractions) in your app:
 ####
 
-#
+<br>
 
 - Designated Designer is an interactive web application built using Ruby and Ruby on Rails.
 - Designated Designer's backend is handled using Ruby on Rails utilising a Postgresql database to access data to be outputted onto Designated Designer's front end, specifically the interactive user interface.
@@ -238,6 +244,10 @@ Designated Designer is a middle management two way market web application betwee
 - Authorisation is achieved with the help of the Devise gem which initially generates a User model, which forms the basis of association for many of the other models present in the database, including the projects model.
 - Elements of the user interface can be changed using forms which are displayed as drop downs and a single button which allows the user to literally interact with another user.
 
+#
+
+<br>
+<br>
 <br>
 
 ## **R16** | Detail any third party services that your app will use:
