@@ -326,6 +326,23 @@ button:focus {
 	color: white;
 }
 
+/* Pages | Front | Footer */
+
+.indexMainFooter {
+	width: 100%;
+	padding: 25px 0px 25px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.indexMainFooterText {
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 15px;
+	margin: 15px 0px 0px 0px;
+}
+
 /* Logged In | Pages | Front | Cover | New & View Projects */
 
 .frontCoverUserControls {
