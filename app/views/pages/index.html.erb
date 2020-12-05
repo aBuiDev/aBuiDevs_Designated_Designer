@@ -1,63 +1,68 @@
-<section class="frontCoverSection">
-    <section class="navBarSection">
-       <div class="navBarLogoTitleSection">
-          <i class="fas fa-magic designatedDesignerLogo"></i>
-          <h1 class="designatedDesignerTitle">Designated Designer</h1>
-       </div>
-       <% if user_signed_in? %>
-       <div>
-           <p class="frontCoverUserDetails">Logged in as: <%= current_user.username %> | Account ID: <%= current_user.id %></p>
-       </div>
-       <% end %>
-        <div class="navBarLinksSection">
-              <% if user_signed_in? %>
-                  <%= link_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
-                  <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
-                  <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
-              <% else %>
-                  <div class="navBarRegistrationLinkContainer">
-                      <%= link_to "Register", new_user_registration_path, class: "navLinkButtons" %>
-                  </div>
-              <% end %>
-       </div>
-    </section>
-    <% if user_signed_in? %>
-       <section class="frontCoverUserControls">
-            <div>
-                <%= button_to "New Job", '/clients', method: 'post', class: "userControls" %>
-            </div>
-            <div>
-                <%= button_to 'View Jobs', designers_path, method: 'post', class: "userControls" %>
-            </div>
-       </section>
-    <% else %>
-       <section class="frontCoverFormSection">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="formInputFieldContainer">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email Here", class: "formInputField" %>
-            </div>
-            <div class="formInputFieldContainer">
-              <%= f.password_field :password, autocomplete: "current-password", placeholder: "Your Password Here", class: "formInputField" %>
-            </div>
-            <div class="formInputFieldRememberContainer">
-                <% if devise_mapping.rememberable? %>
-                    <div class="coverFormCheckboxSection">
-                        <%= f.check_box :remember_me, class: "rememberMeCheckbox"%>
-                        <%= f.label :remember_me, class: "rememberMeLabel" %>
-                    </div>    
+<section class="indexMainSection">
+    <section class="frontCoverSection">
+        <section class="navBarSection">
+        <div class="navBarLogoTitleSection">
+            <i class="fas fa-magic designatedDesignerLogo"></i>
+            <h1 class="designatedDesignerTitle">Designated Designer</h1>
+        </div>
+        <% if user_signed_in? %>
+        <div>
+            <p class="frontCoverUserDetails">Logged in as: <%= current_user.username %> | Account ID: <%= current_user.id %></p>
+        </div>
+        <% end %>
+            <div class="navBarLinksSection">
+                <% if user_signed_in? %>
+                    <%= link_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
+                    <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
+                    <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
+                <% else %>
+                    <div class="navBarRegistrationLinkContainer">
+                        <%= link_to "Register", new_user_registration_path, class: "navLinkButtons" %>
+                    </div>
                 <% end %>
-                <div class="coverFormLoginButtonSection">
-                    <%= f.submit "Log in", class: "coverFormLoginButton" %>
+        </div>
+        </section>
+        <% if user_signed_in? %>
+        <section class="frontCoverUserControls">
+                <div>
+                    <%= button_to "New Job", '/clients', method: 'post', class: "userControls" %>
                 </div>
-            </div>
-          <% end %>
-      </section>
-    <% end %>
+                <div>
+                    <%= button_to 'View Jobs', designers_path, method: 'post', class: "userControls" %>
+                </div>
+        </section>
+        <% else %>
+        <section class="frontCoverFormSection">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="formInputFieldContainer">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email Here", class: "formInputField" %>
+                </div>
+                <div class="formInputFieldContainer">
+                <%= f.password_field :password, autocomplete: "current-password", placeholder: "Your Password Here", class: "formInputField" %>
+                </div>
+                <div class="formInputFieldRememberContainer">
+                    <% if devise_mapping.rememberable? %>
+                        <div class="coverFormCheckboxSection">
+                            <%= f.check_box :remember_me, class: "rememberMeCheckbox"%>
+                            <%= f.label :remember_me, class: "rememberMeLabel" %>
+                        </div>    
+                    <% end %>
+                    <div class="coverFormLoginButtonSection">
+                        <%= f.submit "Log in", class: "coverFormLoginButton" %>
+                    </div>
+                </div>
+            <% end %>
+        </section>
+        <% end %>
+    </section>
+    <section class="aboutDesignatedDesignerSection">
+        <section class="aboutDesignatedDesignerContainer">
+            <h1 class="aboutDesignatedDesignerContainerTitle">Welcome to Designated Designer</h1>
+            <p>There is a huge problem in the design industry where the working environment of most designers fall into a toxic category. This is due to marketing and design being a sub-category of a company that doesn't generate revenue or lack of understanding by employers on the importance of good design and the value towards a brand a good designer can offer. It is well known that design is an extremely challenging profession that requires patience and strong contextual as well as conceptual thinking. The core value a designer can bring is towards branding and identity, where a designer can visually generate a company's persona, allowing both external and internal stakeholders to identify with a company on an interpersonal level. This is the power a designer can offer, however in the industry it is often over-looked and misunderstood.</p>
+            <p>This market place will be implemented as "designer focused" and help designers to focus on their passion of design with more "design" wins as completed projects. Projects will be delivered through an interactive portal where designers can choose what project they want to work on and chat in real time with the client via a built-in messaging interface. No physical interaction or contact will be required to get the job done as the client and designer both have to work together to get the final design approved. This level of collaboration is something missing in the professional designers are often left with obscure briefs to do everything themselves and return a semi polished draft for review. Often, designers are left to chase up clients to review work for a project they have created. Through this two work marketplace as a service, projects don't move forward unless the other party does their part.</p>
+        </section>
+    </section>
 </section>
-<section class="homePageBodySeparatorOne">
-
-</section>
-
 
 
 

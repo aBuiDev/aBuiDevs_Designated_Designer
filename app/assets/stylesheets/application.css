@@ -108,7 +108,12 @@ table {
 
 /* Global | Form */
 
+/* Pages | Front | Index Main */
 
+.indexMainSection {
+	width: 100%;
+	background-color: black;
+}
 
 /* Pages | Front | Cover Section */
 
@@ -288,6 +293,29 @@ button:focus {
 	width: 100%;
 	height: 100px;
 	background-color: rgb(61, 61, 61);
+}
+
+/* Pages | Front | About Designated Designer Section */
+
+.aboutDesignatedDesignerSection {
+	width: 100%;
+	height: 300px;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.aboutDesignatedDesignerContainer {
+	width: 60%;
+	padding: 20px 0px 20px 0px;
+}
+
+.aboutDesignatedDesignerContainerTitle {
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	color: white;
 }
 
 /* Logged In | Pages | Front | Cover | New & View Projects */
