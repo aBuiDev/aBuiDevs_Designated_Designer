@@ -1,57 +1,60 @@
-<section class="frontCoverSection">
-    <section class="navBarSection">
-       <div class="navBarLogoTitleSection">
-          <i class="fas fa-magic designatedDesignerLogo"></i>
-          <h1 class="designatedDesignerTitle">Designated Designer</h1>
-       </div>
-       <% if user_signed_in? %>
-       <div>
-           <p class="frontCoverUserDetails">Logged in as: <%= current_user.username %> | Account ID: <%= current_user.id %></p>
-       </div>
-       <% end %>
-        <div class="navBarLinksSection">
-              <% if user_signed_in? %>
-                  <%= link_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
-                  <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
-                  <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
-              <% else %>
-                  <div class="navBarRegistrationLinkContainer">
-                      <%= link_to "back", home_path, class: "navLinkButtons" %>
+<section class="registrationMainSection">
+    <section class="frontCoverSection">
+        <section class="navBarSection">
+          <div class="navBarLogoTitleSection">
+              <i class="fas fa-magic designatedDesignerLogo"></i>
+              <h1 class="designatedDesignerTitle">Designated Designer</h1>
+          </div>
+          <% if user_signed_in? %>
+          <div>
+              <p class="frontCoverUserDetails">Logged in as: <%= current_user.username %> | Account ID: <%= current_user.id %></p>
+          </div>
+          <% end %>
+            <div class="navBarLinksSection">
+                  <% if user_signed_in? %>
+                      <%= link_to "New Job", '/clients', method: 'post', class: "navLinkButtons" %>
+                      <%= link_to 'View Jobs', designers_path, method: 'post', class: "navLinkButtons" %>
+                      <%= link_to "Logout", destroy_user_session_path, method: "delete", class: "navLinkButtons" %>
+                  <% else %>
+                      <div class="navBarRegistrationLinkContainer">
+                          <%= link_to "back", home_path, class: "navLinkButtons" %>
+                      </div>
+                  <% end %>
+          </div>
+        </section>
+            <section class="userRegistrationFormSection">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                  <%= render "devise/shared/error_messages", resource: resource %>
+
+                  <div class="userRegistrationFieldContainer">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email Here", class: "userRegistrationInputField" %>
                   </div>
-              <% end %>
-       </div>
-    </section>
-        <section class="userRegistrationFormSection">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-              <%= render "devise/shared/error_messages", resource: resource %>
 
-              <div class="userRegistrationFieldContainer">
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email Here", class: "userRegistrationInputField" %>
-              </div>
+                  <div class="userRegistrationFieldContainer">
+                    <%= f.text_field :username, autofocus: true, placeholder: "Your Username Here", class: "userRegistrationInputField" %>
+                  </div>
 
-              <div class="userRegistrationFieldContainer">
-                <%= f.text_field :username, autofocus: true, placeholder: "Your Username Here", class: "userRegistrationInputField" %>
-              </div>
+                  <div class="userRegistrationFieldContainer">
+                    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Your Password Here", class: "userRegistrationInputField" %>
+                  </div>
 
-              <div class="userRegistrationFieldContainer">
-                <%= f.password_field :password, autocomplete: "new-password", placeholder: "Your Password Here", class: "userRegistrationInputField" %>
-              </div>
+                  <div class="userRegistrationFieldContainer">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password Here Here", class: "userRegistrationInputField" %>
+                  </div>
 
-              <div class="userRegistrationFieldContainer">
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password Here Here", class: "userRegistrationInputField" %>
-              </div>
-
-              <div class="UserRegistrationLoginButtonSection">
-                <%= f.submit "Sign up", class: "userRegistrationLoginButton" %>
-              </div>
-            <% end %>
+                  <div class="UserRegistrationLoginButtonSection">
+                    <%= f.submit "Sign up", class: "userRegistrationLoginButton" %>
+                  </div>
+                <% end %>
+            </section>
         </section>
     </section>
+    <footer class="indexMainFooter">
+        <img src="../aBuiDev_grey.svg" width="50px;">
+        <p class="indexMainFooterText">Created by aBuiDev | 2020</p>
+    </footer>
 </section>
 
-<section class="homePageBodySeparatorOne">
-
-</section>
 
 
 
