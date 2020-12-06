@@ -414,3 +414,28 @@
 .updateStatusSelectorElement {
     margin: 10px 0px 10px 0px;
 }
+
+.newProjectUploadImageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0px 0px 0px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    font-size: 15px;
+}
+
+.uploadImageButton {
+	font-family: 'Nunito Sans', sans-serif;
+	color: rgb(255, 255, 255);
+	width: 150px;
+	height: 25px;
+	background: none;
+	border: 1px solid rgb(255, 255, 255);
+}
+
+.uploadImageButton:hover {
+	color: rgb(153, 0, 255);
+	border: 1px solid rgb(153, 0, 255);
+}

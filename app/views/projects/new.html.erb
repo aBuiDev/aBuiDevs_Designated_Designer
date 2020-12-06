@@ -25,12 +25,12 @@
                     <%= form.text_field :title, placeholder: "Name of Project Here", class: "userRegistrationInputField" %>
                 </div>
                 <div class="userRegistrationFieldContainer">
-                <%= form.text_field :description, placeholder: "Enter Project Description Here", class: "userRegistrationInputField" %>
+                    <%= form.text_field :description, placeholder: "Enter Project Description Here", class: "userRegistrationInputField" %>
                 </div>
-                <div class="userRegistrationFieldContainer">
-                <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
+                <div class="newProjectUploadImageContainer">
+                    <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
+                    <%= form.submit "Save", class: "uploadImageButton" %>
                 </div>
-                <%= form.submit "Save" %>
             <% end %>
         </section>
     </section>
